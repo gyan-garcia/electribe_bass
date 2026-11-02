@@ -1,0 +1,33 @@
+{
+  "format": "electribe-desktop-patch-v1",
+  "architecture": "svf12",
+  "parameters": {
+    "pulse_blend": 0.09994714877736766,
+    "pulse_width": 0.7866242712962572,
+    "detune_cents": -3.448650120117187,
+    "sub_level": 0.15536926340583446,
+    "cutoff_hz": 57.97026232352401,
+    "filter_env_octaves": 4.973562046482803,
+    "filter_decay_s": 0.19082261937382278,
+    "attack_s": 0.024952251025882284,
+    "amp_decay_s": 0.2056220061042638,
+    "amp_sustain": 0.062297179299238115,
+    "release_s": 0.07,
+    "resonance": 0.368878741504721,
+    "mixer_drive": 3.58197718602661,
+    "sub_cutoff_hz": 180.0,
+    "glide_s": 0.003,
+    "output_drive": 1.0,
+    "tune_cents": 0.0,
+    "filter_attack_s": 0.02040061940299405,
+    "filter_sustain": 0.009132131305362987,
+    "filter_curve": 0.7549250299049399,
+    "pulse_env_depth": 0.0,
+    "filter_key_tracking": 0.42787172637216137,
+    "resonance_env_depth": 0.0
+  },
+  "engine_source": "voice-snapshot.c",
+  "engine_sha256": "61ff930f41ef6f91c600a13e081e8a07c3ff8daf45ded9c7f8e4efa532f0f129",
+  "note_events": "../mariana/events.json",
+  "status": "listening candidate, not an approved final patch"
+}

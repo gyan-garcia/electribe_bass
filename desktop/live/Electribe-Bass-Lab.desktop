@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Electribe Bass Lab
+Comment=Play and edit the approved Electribe bass engine
+Exec=/bin/bash /home/gyan/code/electribe/run-synth.sh
+Path=/home/gyan/code/electribe
+Icon=multimedia-player
+Terminal=false
+Categories=AudioVideo;Audio;Music;

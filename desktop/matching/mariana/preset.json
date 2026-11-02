@@ -1,0 +1,40 @@
+{
+  "format": "electribe-desktop-rubber-v1",
+  "engine_function": "render_rubber_voice",
+  "status": "listening candidate, match unconfirmed",
+  "selected": {
+    "architecture": "ladder12",
+    "architecture_index": 1,
+    "training_loss": 0.1444103705417743,
+    "validation_loss": 0.1327016039659313,
+    "previous_patch_validation_loss": 0.286455608685992,
+    "gate_fraction": 0.9738271689643979,
+    "parameters": {
+      "pulse_blend": 0.3844934213478292,
+      "pulse_width": 0.6215026131189767,
+      "detune_cents": 0.18674080780020752,
+      "sub_level": 0.1702428746384851,
+      "cutoff_hz": 47.30988876905576,
+      "filter_env_octaves": 5.342601551593839,
+      "filter_decay_s": 0.42096411621205765,
+      "attack_s": 0.0030346634982393855,
+      "amp_decay_s": 0.7086451613502358,
+      "amp_sustain": 0.41426912270424626,
+      "release_s": 0.2672352073628062,
+      "resonance": 0.368196601817066,
+      "mixer_drive": 3.683483356201254,
+      "sub_cutoff_hz": 180.0,
+      "glide_s": 0.003,
+      "output_drive": 1.0,
+      "tune_cents": -7.727115406442118,
+      "filter_attack_s": 0.0020921276939614188,
+      "filter_sustain": 0.14988867405909995,
+      "filter_curve": 1.8977228804702377,
+      "pulse_env_depth": -0.050575656368695675,
+      "filter_key_tracking": 0.9272535074980228,
+      "resonance_env_depth": -0.09746907258503207
+    }
+  },
+  "events_file": "events.json",
+  "reference_sha256": "ee82f9073b3d60b7945460ad75e9f18a89c7a111b059142351f76d507f90fe6a"
+}

@@ -1,0 +1,470 @@
+{
+  "status": "listening candidates; perceptual match unconfirmed",
+  "seed": 20261106,
+  "trials": 1716,
+  "seconds": 164.42492820499956,
+  "architecture": "svf12",
+  "mutable_parameters": [
+    "cutoff_hz",
+    "filter_env_octaves",
+    "filter_decay_s",
+    "filter_attack_s",
+    "filter_sustain",
+    "filter_curve",
+    "filter_key_tracking"
+  ],
+  "frozen_parameters": [
+    "pulse_blend",
+    "pulse_width",
+    "detune_cents",
+    "sub_level",
+    "attack_s",
+    "amp_decay_s",
+    "amp_sustain",
+    "release_s",
+    "resonance",
+    "mixer_drive",
+    "sub_cutoff_hz",
+    "glide_s",
+    "output_drive",
+    "tune_cents",
+    "pulse_env_depth",
+    "resonance_env_depth"
+  ],
+  "baseline_training_loss": 0.2232314981004889,
+  "baseline_selection_loss": 0.23180967849365433,
+  "baseline_audit_loss": 0.2668093426565721,
+  "baseline_tinashe_intro_loss": 0.32783243025705133,
+  "training_notes": [
+    0,
+    3,
+    5,
+    8,
+    10
+  ],
+  "selection_notes": [
+    1,
+    4,
+    6,
+    9
+  ],
+  "audit_notes": [
+    2,
+    7,
+    11,
+    12
+  ],
+  "shortlist": [
+    {
+      "trial": 1716,
+      "loss": 0.19063685137182015,
+      "mariana_train": 0.18640429444297762,
+      "tinashe_intro": 0.289196126178135,
+      "preferred_character_change": 0.023146200261088067,
+      "values": [
+        66.07594599921556,
+        5.911999362475459,
+        0.11860983993240205,
+        0.015158953664659539,
+        0.012480876968131199,
+        0.5817632265752339,
+        0.9988137587103578
+      ],
+      "selection_loss": 0.1920172801337088,
+      "selection_character_change": 0.0258922823347227
+    },
+    {
+      "trial": 1700,
+      "loss": 0.19070588091573973,
+      "mariana_train": 0.18651546164889868,
+      "tinashe_intro": 0.2891961226945546,
+      "preferred_character_change": 0.023058332225997548,
+      "values": [
+        66.07594599921556,
+        5.911999362475459,
+        0.11860983993240205,
+        0.015158953664659539,
+        0.012480876968131199,
+        0.5817632265752339,
+        0.9544076244298152
+      ],
+      "selection_loss": 0.19162154086371996,
+      "selection_character_change": 0.025807136407915248
+    },
+    {
+      "trial": 1707,
+      "loss": 0.1907923285762133,
+      "mariana_train": 0.1866499999703454,
+      "tinashe_intro": 0.2891961191368674,
+      "preferred_character_change": 0.022981047695980885,
+      "values": [
+        66.07594599921556,
+        5.911999362475459,
+        0.11860983993240205,
+        0.015158953664659539,
+        0.012480876968131199,
+        0.5817632265752339,
+        0.9098300562505257
+      ],
+      "selection_loss": 0.1912318268530725,
+      "selection_character_change": 0.025727491535229373
+    },
+    {
+      "trial": 1660,
+      "loss": 0.19085409697593078,
+      "mariana_train": 0.18681989371338562,
+      "tinashe_intro": 0.2882452649827576,
+      "preferred_character_change": 0.024311183800093495,
+      "values": [
+        66.07594599921556,
+        6.075680376381261,
+        0.11700327829952356,
+        0.01518167049906717,
+        0.011381851449723063,
+        0.5871233319057199,
+        0.9544076244298152
+      ],
+      "selection_loss": 0.1916452549652984,
+      "selection_character_change": 0.02710981665254112
+    },
+    {
+      "trial": 1514,
+      "loss": 0.1909153865818634,
+      "mariana_train": 0.1875846412311844,
+      "tinashe_intro": 0.2855024681778218,
+      "preferred_character_change": 0.025056440844699563,
+      "values": [
+        73.16205610697824,
+        5.794736238496958,
+        0.0917563527551854,
+        0.020297723927663908,
+        0.01635129080946425,
+        0.5644371063336666,
+        0.9474656898406107
+      ],
+      "selection_loss": 0.19155392188264642,
+      "selection_character_change": 0.027793008409515103
+    },
+    {
+      "trial": 1706,
+      "loss": 0.19091956579393762,
+      "mariana_train": 0.18684358686437513,
+      "tinashe_intro": 0.2891961161020541,
+      "preferred_character_change": 0.022898317684642025,
+      "values": [
+        66.07594599921556,
+        5.911999362475459,
+        0.11860983993240205,
+        0.015158953664659539,
+        0.012480876968131199,
+        0.5817632265752339,
+        0.8541019662496845
+      ],
+      "selection_loss": 0.19075683721865824,
+      "selection_character_change": 0.02563836123527724
+    },
+    {
+      "trial": 1624,
+      "loss": 0.19093250501996242,
+      "mariana_train": 0.1864915881636422,
+      "tinashe_intro": 0.28997353930560377,
+      "preferred_character_change": 0.023936854442921436,
+      "values": [
+        72.73929454615615,
+        5.731972966271858,
+        0.09905123141152644,
+        0.01584898778010582,
+        0.018264262610725973,
+        0.50985005980988,
+        0.8557434527443227
+      ],
+      "selection_loss": 0.18988897302056512,
+      "selection_character_change": 0.02721111384021777
+    },
+    {
+      "trial": 1686,
+      "loss": 0.19094283142512006,
+      "mariana_train": 0.1865463102703965,
+      "tinashe_intro": 0.28995560034748336,
+      "preferred_character_change": 0.023692941663458485,
+      "values": [
+        66.07594599921556,
+        5.911999362475459,
+        0.11860983993240205,
+        0.015158953664659539,
+        0.029179606750063095,
+        0.5871233319057199,
+        0.9544076244298152
+      ],
+      "selection_loss": 0.19102149580803293,
+      "selection_character_change": 0.0269488602070639
+    },
+    {
+      "trial": 1590,
+      "loss": 0.1909488902787409,
+      "mariana_train": 0.18573193989657094,
+      "tinashe_intro": 0.2936887043490187,
+      "preferred_character_change": 0.021987914813375132,
+      "values": [
+        67.50603330156758,
+        6.097017661643873,
+        0.13858783009480344,
+        0.009180675482671196,
+        0.006286884197231807,
+        0.6193803418139372,
+        0.930397091722528
+      ],
+      "selection_loss": 0.19130148413190412,
+      "selection_character_change": 0.024482118471614262
+    },
+    {
+      "trial": 1296,
+      "loss": 0.1909515970906528,
+      "mariana_train": 0.18665382071402448,
+      "tinashe_intro": 0.2907792059893084,
+      "preferred_character_change": 0.021380813929739607,
+      "values": [
+        67.81632918327774,
+        5.664514830836978,
+        0.09032986544761892,
+        0.016990020341911716,
+        0.020340902722233836,
+        0.5214653802227865,
+        0.9181230089585699
+      ],
+      "selection_loss": 0.19173865046652028,
+      "selection_character_change": 0.023487719900278564
+    },
+    {
+      "trial": 1633,
+      "loss": 0.19095188400445284,
+      "mariana_train": 0.1872148182805944,
+      "tinashe_intro": 0.28881986837020046,
+      "preferred_character_change": 0.02137537533996677,
+      "values": [
+        73.98818180497433,
+        5.331482450907259,
+        0.07750339989276783,
+        0.021318921515816738,
+        0.02886568220269775,
+        0.5259990401207953,
+        0.940256849263621
+      ],
+      "selection_loss": 0.1922254120626889,
+      "selection_character_change": 0.02379074747328301
+    },
+    {
+      "trial": 1658,
+      "loss": 0.191011453602443,
+      "mariana_train": 0.18667741508186708,
+      "tinashe_intro": 0.29153653826072756,
+      "preferred_character_change": 0.02029955392990567,
+      "values": [
+        66.07594599921556,
+        5.651016802943899,
+        0.11700327829952356,
+        0.01518167049906717,
+        0.011381851449723063,
+        0.5871233319057199,
+        0.9544076244298152
+      ],
+      "selection_loss": 0.19298427957511496,
+      "selection_character_change": 0.02229476282871905
+    },
+    {
+      "trial": 1334,
+      "loss": 0.19104725843194098,
+      "mariana_train": 0.1860982722996219,
+      "tinashe_intro": 0.2930889225518056,
+      "preferred_character_change": 0.021606833118445606,
+      "values": [
+        77.15822397645947,
+        5.630895454099678,
+        0.15404701290424844,
+        0.011716656137866432,
+        0.006286884197231807,
+        0.7014029759392472,
+        0.9570296995334678
+      ],
+      "selection_loss": 0.19151660530422662,
+      "selection_character_change": 0.024600400326264465
+    },
+    {
+      "trial": 1677,
+      "loss": 0.19107043064249032,
+      "mariana_train": 0.18743114306063147,
+      "tinashe_intro": 0.2871166270767625,
+      "preferred_character_change": 0.024453050846958056,
+      "values": [
+        66.07594599921556,
+        5.911999362475459,
+        0.11860983993240205,
+        0.017497487500629676,
+        0.011381851449723063,
+        0.5871233319057199,
+        0.9544076244298152
+      ],
+      "selection_loss": 0.19187846420002175,
+      "selection_character_change": 0.027527731419740978
+    },
+    {
+      "trial": 1232,
+      "loss": 0.19107503397636125,
+      "mariana_train": 0.1872148759412686,
+      "tinashe_intro": 0.2875693035816793,
+      "preferred_character_change": 0.025107601011373465,
+      "values": [
+        74.58006509418088,
+        6.000541189358433,
+        0.10103386224496186,
+        0.01662275033099593,
+        0.014429648383524993,
+        0.5946007291921567,
+        0.9420587110199815
+      ],
+      "selection_loss": 0.19133267646574492,
+      "selection_character_change": 0.027735078329148375
+    },
+    {
+      "trial": 1332,
+      "loss": 0.19108016721660998,
+      "mariana_train": 0.18602413662662495,
+      "tinashe_intro": 0.2926237682474389,
+      "preferred_character_change": 0.023385179284847436,
+      "values": [
+        70.5908368400073,
+        5.942531574268903,
+        0.16115309644490974,
+        0.010118869929130426,
+        0.006201825928847243,
+        0.6654467670301379,
+        0.9951661822860128
+      ],
+      "selection_loss": 0.191368076654468,
+      "selection_character_change": 0.027023006480872445
+    }
+  ],
+  "champion": {
+    "trial": 1624,
+    "loss": 0.19093250501996242,
+    "mariana_train": 0.1864915881636422,
+    "tinashe_intro": 0.28997353930560377,
+    "preferred_character_change": 0.023936854442921436,
+    "values": [
+      72.73929454615615,
+      5.731972966271858,
+      0.09905123141152644,
+      0.01584898778010582,
+      0.018264262610725973,
+      0.50985005980988,
+      0.8557434527443227
+    ],
+    "selection_loss": 0.18988897302056512,
+    "selection_character_change": 0.02721111384021777
+  },
+  "outputs": {
+    "preferred": {
+      "audit_loss": 0.2651368328621682,
+      "audit_character_change": 0.0004342764594696787,
+      "whole_phrase_loss": 0.2192684419047179,
+      "parameters": {
+        "pulse_blend": 0.09994714877736766,
+        "pulse_width": 0.7866242712962572,
+        "detune_cents": -3.448650120117187,
+        "sub_level": 0.15536926340583446,
+        "cutoff_hz": 46.19994371440839,
+        "filter_env_octaves": 4.215151126693748,
+        "filter_decay_s": 0.2825940073361191,
+        "attack_s": 0.024952251025882284,
+        "amp_decay_s": 0.2056220061042638,
+        "amp_sustain": 0.062297179299238115,
+        "release_s": 0.07,
+        "resonance": 0.368878741504721,
+        "mixer_drive": 3.58197718602661,
+        "sub_cutoff_hz": 180.0,
+        "glide_s": 0.003,
+        "output_drive": 1.0,
+        "tune_cents": 0.0,
+        "filter_attack_s": 0.024952251025882284,
+        "filter_sustain": 0.0,
+        "filter_curve": 1.0,
+        "pulse_env_depth": 0.0,
+        "filter_key_tracking": 0.0,
+        "resonance_env_depth": 0.0
+      }
+    },
+    "refined": {
+      "audit_loss": 0.1950328287340681,
+      "audit_character_change": 0.027028286434396608,
+      "whole_phrase_loss": 0.15907084287892354,
+      "parameters": {
+        "pulse_blend": 0.09994714877736766,
+        "pulse_width": 0.7866242712962572,
+        "detune_cents": -3.448650120117187,
+        "sub_level": 0.15536926340583446,
+        "cutoff_hz": 72.73929454615615,
+        "filter_env_octaves": 5.731972966271858,
+        "filter_decay_s": 0.09905123141152644,
+        "attack_s": 0.024952251025882284,
+        "amp_decay_s": 0.2056220061042638,
+        "amp_sustain": 0.062297179299238115,
+        "release_s": 0.07,
+        "resonance": 0.368878741504721,
+        "mixer_drive": 3.58197718602661,
+        "sub_cutoff_hz": 180.0,
+        "glide_s": 0.003,
+        "output_drive": 1.0,
+        "tune_cents": 0.0,
+        "filter_attack_s": 0.01584898778010582,
+        "filter_sustain": 0.018264262610725973,
+        "filter_curve": 0.50985005980988,
+        "pulse_env_depth": 0.0,
+        "filter_key_tracking": 0.8557434527443227,
+        "resonance_env_depth": 0.0
+      }
+    },
+    "gentle": {
+      "audit_loss": 0.2103815123419316,
+      "audit_character_change": 0.015381305640367948,
+      "whole_phrase_loss": 0.17092996573391087,
+      "parameters": {
+        "pulse_blend": 0.09994714877736766,
+        "pulse_width": 0.7866242712962572,
+        "detune_cents": -3.448650120117187,
+        "sub_level": 0.15536926340583446,
+        "cutoff_hz": 57.97026232352401,
+        "filter_env_octaves": 4.973562046482803,
+        "filter_decay_s": 0.19082261937382278,
+        "attack_s": 0.024952251025882284,
+        "amp_decay_s": 0.2056220061042638,
+        "amp_sustain": 0.062297179299238115,
+        "release_s": 0.07,
+        "resonance": 0.368878741504721,
+        "mixer_drive": 3.58197718602661,
+        "sub_cutoff_hz": 180.0,
+        "glide_s": 0.003,
+        "output_drive": 1.0,
+        "tune_cents": 0.0,
+        "filter_attack_s": 0.02040061940299405,
+        "filter_sustain": 0.009132131305362987,
+        "filter_curve": 0.7549250299049399,
+        "pulse_env_depth": 0.0,
+        "filter_key_tracking": 0.42787172637216137,
+        "resonance_env_depth": 0.0
+      }
+    }
+  },
+  "reference_hashes": {
+    "Mariana_2.wav": "ee82f9073b3d60b7945460ad75e9f18a89c7a111b059142351f76d507f90fe6a",
+    "Tinashe_bass.wav": "fd3ce920bcfbcbe3c8fd6baa808ef28bb03d7f9a2e807e99bbdb7979ff294bf4"
+  },
+  "source_sha256": "61ff930f41ef6f91c600a13e081e8a07c3ff8daf45ded9c7f8e4efa532f0f129",
+  "limitations": [
+    "User listening preference cannot be inferred from error alone.",
+    "Timing/gates estimated; final G1 retrigger inferred from audio.",
+    "Same recordings used for development; not a generalization test.",
+    "Tinashe intro check only covers 1.3 seconds, not the full song.",
+    "Envelope timing parameters are time constants, not exact stage lengths.",
+    "Desktop floating-point render, no hardware performance validation."
+  ]
+}

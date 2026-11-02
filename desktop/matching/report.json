@@ -1,0 +1,217 @@
+{
+  "status": "candidate; perceptual match not established",
+  "seed": 20261103,
+  "iterations": 16,
+  "warm_start": "desktop/matching/runs/refined/architecture-results.json",
+  "reference_sha256": "fd3ce920bcfbcbe3c8fd6baa808ef28bb03d7f9a2e807e99bbdb7979ff294bf4",
+  "voice_source_sha256": "6570bc0482a32f44e3309991b709d2eb86154cd41e057a6e46486315d3be8c77",
+  "trials": 2448,
+  "seconds": 74.44358785800068,
+  "training_windows": [
+    0,
+    15,
+    30
+  ],
+  "validation_windows": [
+    7,
+    22,
+    43
+  ],
+  "window_duration": 1.4,
+  "architectures": [
+    {
+      "architecture": "svf12",
+      "architecture_index": 0,
+      "training_loss": 0.10898665292502197,
+      "validation_loss": 0.1006503822227461,
+      "baseline_training_loss": 0.12626849728002248,
+      "baseline_validation_loss": 0.11306423943427657,
+      "parameters": {
+        "pulse_blend": 0.09994714877736766,
+        "pulse_width": 0.7866242712962572,
+        "detune_cents": -3.448650120117187,
+        "sub_level": 0.15536926340583446,
+        "cutoff_hz": 46.19994371440839,
+        "filter_env_octaves": 4.215151126693748,
+        "filter_decay_s": 0.2825940073361191,
+        "attack_s": 0.024952251025882284,
+        "amp_decay_s": 0.2056220061042638,
+        "amp_sustain": 0.062297179299238115,
+        "release_s": 0.07,
+        "resonance": 0.368878741504721,
+        "mixer_drive": 3.58197718602661,
+        "sub_cutoff_hz": 180.0,
+        "glide_s": 0.003,
+        "output_drive": 1.0
+      }
+    },
+    {
+      "architecture": "ladder12",
+      "architecture_index": 1,
+      "training_loss": 0.10945250478555894,
+      "validation_loss": 0.10093838389523635,
+      "baseline_training_loss": 0.13271168950760615,
+      "baseline_validation_loss": 0.1203905696179322,
+      "parameters": {
+        "pulse_blend": 0.01944929007406976,
+        "pulse_width": 0.8152643227576526,
+        "detune_cents": -0.5512512870590178,
+        "sub_level": 0.04116836783467859,
+        "cutoff_hz": 110.82050697388223,
+        "filter_env_octaves": 3.59603040966793,
+        "filter_decay_s": 0.19067462134550314,
+        "attack_s": 0.024448707194548783,
+        "amp_decay_s": 0.2264689159797988,
+        "amp_sustain": 0.09025998646343497,
+        "release_s": 0.07,
+        "resonance": 0.0032917703341824867,
+        "mixer_drive": 3.8924167099814406,
+        "sub_cutoff_hz": 180.0,
+        "glide_s": 0.003,
+        "output_drive": 1.0
+      }
+    },
+    {
+      "architecture": "ladder24",
+      "architecture_index": 2,
+      "training_loss": 0.11049930974681037,
+      "validation_loss": 0.10233083401274916,
+      "baseline_training_loss": 0.1264588794983101,
+      "baseline_validation_loss": 0.11899983227783582,
+      "parameters": {
+        "pulse_blend": 0.5956341483492376,
+        "pulse_width": 0.5468902907693034,
+        "detune_cents": -2.830344941036537,
+        "sub_level": 0.08598589319626049,
+        "cutoff_hz": 53.15243842204836,
+        "filter_env_octaves": 5.353914201286958,
+        "filter_decay_s": 0.29087624262542927,
+        "attack_s": 0.023959986958491795,
+        "amp_decay_s": 0.2530368570636897,
+        "amp_sustain": 0.12713859322280485,
+        "release_s": 0.07,
+        "resonance": 0.039759761523452175,
+        "mixer_drive": 2.9244215239767946,
+        "sub_cutoff_hz": 180.0,
+        "glide_s": 0.003,
+        "output_drive": 1.0
+      }
+    }
+  ],
+  "selected": {
+    "architecture": "svf12",
+    "architecture_index": 0,
+    "training_loss": 0.10898665292502197,
+    "validation_loss": 0.1006503822227461,
+    "baseline_training_loss": 0.12626849728002248,
+    "baseline_validation_loss": 0.11306423943427657,
+    "parameters": {
+      "pulse_blend": 0.09994714877736766,
+      "pulse_width": 0.7866242712962572,
+      "detune_cents": -3.448650120117187,
+      "sub_level": 0.15536926340583446,
+      "cutoff_hz": 46.19994371440839,
+      "filter_env_octaves": 4.215151126693748,
+      "filter_decay_s": 0.2825940073361191,
+      "attack_s": 0.024952251025882284,
+      "amp_decay_s": 0.2056220061042638,
+      "amp_sustain": 0.062297179299238115,
+      "release_s": 0.07,
+      "resonance": 0.368878741504721,
+      "mixer_drive": 3.58197718602661,
+      "sub_cutoff_hz": 180.0,
+      "glide_s": 0.003,
+      "output_drive": 1.0
+    }
+  },
+  "automation": [
+    {
+      "time": 0,
+      "cutoff_multiplier": 0.6644155676926167,
+      "resonance": 0.128910281146215,
+      "initial_loss": 0.11187278341808458,
+      "fitted_loss": 0.11045459010905183
+    },
+    {
+      "time": 6,
+      "cutoff_multiplier": 1.2420384450199884,
+      "resonance": 0.002835394250982004,
+      "initial_loss": 0.10381453953654796,
+      "fitted_loss": 0.10307309779254392
+    },
+    {
+      "time": 12,
+      "cutoff_multiplier": 3.5439749408734125,
+      "resonance": 0.6368854001688227,
+      "initial_loss": 0.230839642165185,
+      "fitted_loss": 0.2109318462000542
+    },
+    {
+      "time": 18,
+      "cutoff_multiplier": 1.8118964168710072,
+      "resonance": 0.21990160652743157,
+      "initial_loss": 0.11825703743731011,
+      "fitted_loss": 0.11564127096957189
+    },
+    {
+      "time": 24,
+      "cutoff_multiplier": 0.8950609128389345,
+      "resonance": 0.780096401453988,
+      "initial_loss": 0.1037922734689922,
+      "fitted_loss": 0.10082127417330508
+    },
+    {
+      "time": 30,
+      "cutoff_multiplier": 1.0,
+      "resonance": 0.368878741504721,
+      "initial_loss": 0.101560810014787,
+      "fitted_loss": 0.101560810014787
+    },
+    {
+      "time": 36,
+      "cutoff_multiplier": 1.3225727738172401,
+      "resonance": 0.4798199353580843,
+      "initial_loss": 0.1017335223018179,
+      "fitted_loss": 0.10025501657687479
+    },
+    {
+      "time": 42,
+      "cutoff_multiplier": 0.8937413434823186,
+      "resonance": 0.7788296216505919,
+      "initial_loss": 0.11201146622166036,
+      "fitted_loss": 0.1068200645523068
+    },
+    {
+      "time": 48,
+      "cutoff_multiplier": 1.1902208593287664,
+      "resonance": 0.38605391816628937,
+      "initial_loss": 0.14215502850188877,
+      "fitted_loss": 0.141479629429754
+    }
+  ],
+  "output_statistics": {
+    "baseline": {
+      "raw_peak": 0.9035381078720093,
+      "export_gain": 0.985016561278313,
+      "rms": 0.28555840253829956
+    },
+    "fitted-static": {
+      "raw_peak": 1.193739891052246,
+      "export_gain": 0.74555605175889,
+      "rms": 0.40688666701316833
+    },
+    "fitted-automated": {
+      "raw_peak": 1.3182851076126099,
+      "export_gain": 0.6751195131163802,
+      "rms": 0.3754121959209442
+    }
+  },
+  "limitations": [
+    "Provisional transcription; no manual MIDI timing verification.",
+    "Mono timbre and amplitude features; no stereo/effects reconstruction.",
+    "Independent window fits reset voice state; section automation approximate.",
+    "Validation used for architecture selection, not independent final testing.",
+    "Desktop floating-point core; not ported or timed on Blackfin.",
+    "Not a circuit-accurate Model D or Mariana emulation."
+  ]
+}

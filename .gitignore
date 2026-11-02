@@ -1,0 +1,42 @@
+# Local tools, downloads, environments and nested upstream checkouts
+.agents/
+.aws/
+.codex/
+.venv/
+__pycache__/
+*.py[cod]
+vendor/
+wheels/
+build/
+outputs/
+runs/
+/development/toolchains/
+/development/downloads/
+/development/freetribe/
+/development/freetribe-docs/
+
+# Personal reference media, sessions and saved user patches
+/references/
+/presets/user/
+preferences.json
+.env
+.env.*
+*.log
+*.jsonl
+*.deb
+*.whl
+*.zip
+*.tar.*
+*.so
+*.o
+*.a
+*.elf
+*.bin
+*.ldr
+*.wav
+*.png
+*.jpeg
+*.jpg
+
+# Approved, synthetic audio fixtures are required by the regression tests
+!/baselines/bassline-v1/*.wav

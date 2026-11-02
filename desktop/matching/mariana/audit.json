@@ -1,0 +1,21 @@
+{
+  "reference": {
+    "upper_lower_balance_db": -13.838985255230043,
+    "peak": 0.3807850873427154,
+    "rms": 0.0909091092958736
+  },
+  "previous": {
+    "upper_lower_balance_db": -18.053239714052374,
+    "peak": 0.889984130859375,
+    "rms": 0.24542149839987618
+  },
+  "candidate": {
+    "upper_lower_balance_db": -14.524918904101122,
+    "peak": 0.7691819935434892,
+    "rms": 0.18378016656687118
+  },
+  "reference_sha256": "ee82f9073b3d60b7945460ad75e9f18a89c7a111b059142351f76d507f90fe6a",
+  "description": "Full-phrase mono energy 400-6000 Hz relative to 22-400 Hz. Not a perceptual-match percentage.",
+  "full_loss_previous": 0.22108044262409132,
+  "full_loss_new": 0.11852506681023654
+}

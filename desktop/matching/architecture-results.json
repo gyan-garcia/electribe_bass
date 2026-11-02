@@ -1,0 +1,80 @@
+[
+  {
+    "architecture": "svf12",
+    "architecture_index": 0,
+    "training_loss": 0.10898665292502197,
+    "validation_loss": 0.1006503822227461,
+    "baseline_training_loss": 0.12626849728002248,
+    "baseline_validation_loss": 0.11306423943427657,
+    "parameters": {
+      "pulse_blend": 0.09994714877736766,
+      "pulse_width": 0.7866242712962572,
+      "detune_cents": -3.448650120117187,
+      "sub_level": 0.15536926340583446,
+      "cutoff_hz": 46.19994371440839,
+      "filter_env_octaves": 4.215151126693748,
+      "filter_decay_s": 0.2825940073361191,
+      "attack_s": 0.024952251025882284,
+      "amp_decay_s": 0.2056220061042638,
+      "amp_sustain": 0.062297179299238115,
+      "release_s": 0.07,
+      "resonance": 0.368878741504721,
+      "mixer_drive": 3.58197718602661,
+      "sub_cutoff_hz": 180.0,
+      "glide_s": 0.003,
+      "output_drive": 1.0
+    }
+  },
+  {
+    "architecture": "ladder12",
+    "architecture_index": 1,
+    "training_loss": 0.10945250478555894,
+    "validation_loss": 0.10093838389523635,
+    "baseline_training_loss": 0.13271168950760615,
+    "baseline_validation_loss": 0.1203905696179322,
+    "parameters": {
+      "pulse_blend": 0.01944929007406976,
+      "pulse_width": 0.8152643227576526,
+      "detune_cents": -0.5512512870590178,
+      "sub_level": 0.04116836783467859,
+      "cutoff_hz": 110.82050697388223,
+      "filter_env_octaves": 3.59603040966793,
+      "filter_decay_s": 0.19067462134550314,
+      "attack_s": 0.024448707194548783,
+      "amp_decay_s": 0.2264689159797988,
+      "amp_sustain": 0.09025998646343497,
+      "release_s": 0.07,
+      "resonance": 0.0032917703341824867,
+      "mixer_drive": 3.8924167099814406,
+      "sub_cutoff_hz": 180.0,
+      "glide_s": 0.003,
+      "output_drive": 1.0
+    }
+  },
+  {
+    "architecture": "ladder24",
+    "architecture_index": 2,
+    "training_loss": 0.11049930974681037,
+    "validation_loss": 0.10233083401274916,
+    "baseline_training_loss": 0.1264588794983101,
+    "baseline_validation_loss": 0.11899983227783582,
+    "parameters": {
+      "pulse_blend": 0.5956341483492376,
+      "pulse_width": 0.5468902907693034,
+      "detune_cents": -2.830344941036537,
+      "sub_level": 0.08598589319626049,
+      "cutoff_hz": 53.15243842204836,
+      "filter_env_octaves": 5.353914201286958,
+      "filter_decay_s": 0.29087624262542927,
+      "attack_s": 0.023959986958491795,
+      "amp_decay_s": 0.2530368570636897,
+      "amp_sustain": 0.12713859322280485,
+      "release_s": 0.07,
+      "resonance": 0.039759761523452175,
+      "mixer_drive": 2.9244215239767946,
+      "sub_cutoff_hz": 180.0,
+      "glide_s": 0.003,
+      "output_drive": 1.0
+    }
+  }
+]

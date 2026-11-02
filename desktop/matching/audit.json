@@ -1,0 +1,42 @@
+{
+  "independent_audit_windows": [
+    {
+      "start": 3.3,
+      "baseline": 0.17781809799767345,
+      "static": 0.15570331531240672,
+      "automated": 0.1561202804405899
+    },
+    {
+      "start": 9.3,
+      "baseline": 0.15989392285077314,
+      "static": 0.13441478932609197,
+      "automated": 0.1418137607237297
+    },
+    {
+      "start": 27.3,
+      "baseline": 0.13113794374358828,
+      "static": 0.13269746071356628,
+      "automated": 0.13423957548210333
+    },
+    {
+      "start": 39.3,
+      "baseline": 0.1422666743023871,
+      "static": 0.12484169998023135,
+      "automated": 0.12288652417518237
+    },
+    {
+      "start": 51.3,
+      "baseline": 0.11413975622828595,
+      "static": 0.10879397752811792,
+      "automated": 0.10867137808699881
+    }
+  ],
+  "means": {
+    "baseline": 0.1450512790245416,
+    "static": 0.13129024857208285,
+    "automated": 0.13274630378172084
+  },
+  "comparison_order": "For excerpts at 0, 7 and 24 seconds: reference 3 s, silence .5 s, synth 3 s, silence 1 s. RMS-matched with peak caps.",
+  "note": "Audit excerpts excluded from explicit core/section fitting windows; same recording and provisional note extraction. Not independent musical material. These audit scores are now used to select the output variant.",
+  "selected_output": "static"
+}

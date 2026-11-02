@@ -1,0 +1,20 @@
+{
+  "reference_balance_db": -13.838985255230043,
+  "candidates": {
+    "preferred": {
+      "upper_lower_balance_db": -17.970991128395198,
+      "whole_phrase_loss": 0.2192684419047179,
+      "audit_loss": 0.2651368328621682
+    },
+    "refined": {
+      "upper_lower_balance_db": -15.343297795574042,
+      "whole_phrase_loss": 0.15907084287892354,
+      "audit_loss": 0.1950328287340681
+    },
+    "gentle": {
+      "upper_lower_balance_db": -15.928591621685372,
+      "whole_phrase_loss": 0.17092996573391087,
+      "audit_loss": 0.2103815123419316
+    }
+  }
+}

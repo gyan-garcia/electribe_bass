@@ -1,0 +1,5 @@
+ d482247a30a0fbf2f99e90b761e30dcecb42214e cpu/lib/LEAF (heads/master)
+ 78044a5129d7184b16dc19172cee194e09d5807d cpu/lib/UGUI (heads/main)
+ b790453e029ba46138504c0034d28416791213fe cpu/lib/am1802-csl (heads/main)
+ ed57b30246438aa0d15b003d89e62735c690f5c3 dsp/lib/aleph-dsp (heads/main)
+ 6dc2e4e2d0cddeb69d229ef2d6b60fd9d3896b92 dsp/lib/aleph-dsp/lib/libfixmath (heads/main)

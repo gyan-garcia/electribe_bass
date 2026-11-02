@@ -1,0 +1,3 @@
+# Preserve literal upstream diff context without treating it as our indentation.
+*.patch -whitespace
+*.wav binary

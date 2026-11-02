@@ -1,0 +1,22 @@
+diff --git a/cpu/Makefile b/cpu/Makefile
+index 0d4dd0d..5957036 100644
+--- a/cpu/Makefile
++++ b/cpu/Makefile
+@@ -13,6 +13,8 @@ LPATH := -L"${LIB_C}" \
+       	 -L"${LIB_GCC}"
+ 
+ NEWLIB ?= /usr/arm-none-eabi/include/
++PICOLIBC_SPECS ?= picolibc.specs
++PICOLIBC_FLAGS ?=
+ INC_DIRS := $(NEWLIB)
+ 
+ BUILD_DIR := ./build
+@@ -41,7 +43,7 @@ ASM_FLAGS := -x assembler-with-cpp
+ 
+ # Linker options.
+ LDFLAGS := -e start -u start -u __aeabi_uidiv -u __aeabi_idiv $(LPATH) -lm -lc -lgcc  \
+-					 -T cpu.lds -Xlinker -Map -Xlinker $(BUILD_DIR)/boot.map -specs=picolibc.specs \
++					 -T cpu.lds -Xlinker -Map -Xlinker $(BUILD_DIR)/boot.map -specs=$(PICOLIBC_SPECS) $(PICOLIBC_FLAGS) \
+ 					 -Wl,--gc-sections,--print-memory-usage,--no-warn-rwx-segments 
+ # Binary options.
+ BIN_FLAGS := -O binary
