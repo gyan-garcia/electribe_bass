@@ -48,9 +48,10 @@ class ModelDTests(unittest.TestCase):
         bad={**self.patch,'parameters':{**self.patch['parameters'],'osc1_wave':1.5}}
         with self.assertRaises(ValueError): validate_patch(bad)
 
-    def test_all_factory_patches_discovered_and_valid(self):
+    def test_active_patches_discovered_and_valid(self):
         patches=[read_patch(path) for path in patch_paths()]
-        self.assertGreaterEqual(sum(patch['architecture']=='modeld' for patch in patches),4)
+        self.assertTrue({'UK Res Bass','BOSS 03','Moog Res'}.issubset({p['name'] for p in patches}))
+        self.assertNotIn('Model D Init',{p['name'] for p in patches})
         for patch in patches: self.assertEqual(validate_patch(patch),patch)
 
     def test_blocks_are_identical(self):
@@ -141,7 +142,7 @@ class ModelDTests(unittest.TestCase):
             window.apply_patch(self.patch)
             window.tick()
             self.assertEqual(len(window.knobs),47)
-            self.assertEqual(window.tabs.count(),7)
+            self.assertEqual(window.tabs.count(),9)
             self.assertNotIn('pulse_blend',window.patch['parameters'])
             window.knobs['osc1_wave'].spin.setCurrentIndex(4)
             window.tick()

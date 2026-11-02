@@ -31,6 +31,16 @@ another output. Device numbers can change; select by displayed name.
 
 ## Play and edit
 
+The preferred focused auditions are now playable as **Model D 18 dB Finalist 2**
+and **Model D 18 dB Finalist 3**, under Model D prototype. Their saved modeld18
+architecture selects the third ladder stage for the low-pass output, keeping
+the four-stage feedback loop exactly as auditioned. The high-pass selection
+retains the original 24 dB response and is labelled accordingly. Architecture
+and clean gain survive Save As / Import. Both use the existing Model D MIDI maps.
+Their raw full-phrase audio is tested sample-for-sample against the frozen
+audition engine in fixtures/ladder18-audition.c. Clean patch gains are +20.46 dB
+and +19.97 dB respectively, balanced against the approved bass phrase.
+
 - Select **Approved bass** or **Model D prototype** using the engine selector
   beside Patch. Switching engines releases held notes. Save edits before switching.
 - Model D Init starts with one saw oscillator. Model D Bass and Model D Pluck are
@@ -143,6 +153,48 @@ package_modeld_rubber.py RUN_FOLDER... packages completed normal and resonant
 runs into the listening comparison. Listening approval remains pending.
 
 ## Dependencies and scope
+
+### Small dark room reverb
+
+Both engines have a Reverb tab with Mix (0–100%) and Decay (0.15–2.5 seconds).
+Mix defaults to zero and preserves the dry samples exactly. Save As stores both
+controls per patch; old patches load dry. The signal order is voice → EQ →
+reverb → patch/master gain → output clip guard. Panic and patch changes clear
+the tail. Decay is a nominal feedback decay time; high frequencies fade faster.
+
+The native mono algorithm uses four parallel damped comb delays followed by two
+allpass diffusers, with a 180 Hz input high-pass and 2.8 kHz feedback damping.
+Mix and feedback adjustments are smoothed over 20 ms. It allocates delay memory
+only at creation (about 30 KiB at 48 kHz), with no FFT or convolution. This is
+portable C, but Blackfin CPU cost and memory placement remain unverified.
+Desktop offline previews include the effect within their existing render length.
+The two effect controls currently do not support MIDI learn.
+
+### Patch EQ
+
+Both engines have three EQ knobs: Bass, Mid, and Treble (±12 dB).
+Frequencies are fixed at 100 Hz, 700 Hz (Q 0.7), and 2500 Hz respectively.
+All three at zero is flat; there is no enable switch or reset button.
+Save As stores the settings per patch. Existing advanced EQ patches retain
+exact settings when loaded; a visible note explains that editing any tone knob
+converts them to the fixed tuning. Previously bypassed EQ starts at zero.
+EQ knobs do not currently support MIDI learn.
+
+The monochrome display shows the EQ response, not an audio spectrum. It uses
+64 logarithmically spaced points from 20 Hz to 20 kHz and a fixed ±24 dB scale.
+It redraws only on edits or patch loads, without audio capture or an FFT.
+For a hardware port, the response calculation in eq_view.py can be translated
+to C (complex operations can be replaced by real arithmetic) and rendered as
+a polyline using the target display driver. Qt itself is desktop-only;
+Electribe display integration and timing have not been implemented or verified.
+
+The three native biquads follow the
+[RBJ Audio EQ Cookbook](https://www.w3.org/TR/audio-eq-cookbook/), after the voice's
+drive stages and before patch/master gain and the final output clip guard.
+Coefficient and bypass changes use 20 ms smoothing. Boosting EQ can increase
+output peaks; lower patch or master volume if the clipping indicator lights.
+Offline Model D previews also apply the saved EQ. The original factory presets
+and approved baselines are unchanged. Electribe DSP timing remains unmeasured.
 
 setup.sh targets this Ubuntu 24.04 x86_64 environment. It keeps audio libraries
 and build headers under vendor, Python packages under .venv, and compiled MIDI

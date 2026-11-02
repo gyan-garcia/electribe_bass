@@ -1,0 +1,18 @@
+{
+  "experiment": "focused-ladder-20261102T021518Z",
+  "reference": "Mariana_2.wav",
+  "preferred_tiers": [
+    {
+      "ranks": [2, 3],
+      "architecture": "ladder18-tap",
+      "assessment": "Both sound pretty good to the user; no preference between them or exact match confirmed"
+    }
+  ],
+  "previous_experiment": {
+    "experiment": "hour-architecture-20261102T010357Z",
+    "preferred_tiers": [[3, 4], [8, 9]]
+  },
+  "next_direction": "Use focused finalists 2 and 3, both 18 dB ladder output, as the leading candidates for further refinement. Keep the original approved baseline intact.",
+  "baseline_promoted": false,
+  "exact_match_confirmed": false
+}

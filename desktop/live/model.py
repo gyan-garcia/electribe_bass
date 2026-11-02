@@ -1,12 +1,15 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import json
 import math
 from pathlib import Path
 import re
+from eq import DEFAULT as EQ_DEFAULT, validate as validate_eq
+
+from reverb import DEFAULT as REVERB_DEFAULT, validate as validate_reverb
 
 ROOT=Path(__file__).resolve().parents[2]
 USER_PATCHES=ROOT/'presets/user'
-ARCHITECTURES={'svf12':0,'ladder12':1,'ladder24':2,'modeld':3}
+ARCHITECTURES={'svf12':0,'ladder12':1,'ladder24':2,'modeld':3,'modeld18':4}
 
 
 @dataclass(frozen=True)
@@ -87,7 +90,7 @@ MODEL_D_PARAMETERS.extend([
     Parameter('feedback_level','Feedback Cable','Mixer',0,.7),
     Parameter('output_drive','Output Drive','Mixer',.2,2),
     Parameter('cutoff_hz','Cutoff','Filter',20,18000,True,suffix=' Hz'),
-    Parameter('resonance','Emphasis','Filter',0,1.1),
+    Parameter('resonance','Resonance','Filter',0,1.1),
     Parameter('filter_env_octaves','Contour Amount','Filter',-6,8,suffix=' oct'),
     Parameter('filter_mode','Filter Mode','Filter',0,1,choices=('24 dB Low-pass','24 dB High-pass')),
     Parameter('keytrack_1','Keyboard Control ⅓','Filter',0,1,choices=SWITCH),
@@ -115,11 +118,13 @@ MODEL_D_NAMES=[parameter.name for parameter in MODEL_D_PARAMETERS]
 
 
 def engine_key(architecture):
-    return 'modeld' if architecture=='modeld' else 'bass'
+    return 'modeld' if architecture in ('modeld','modeld18') else 'bass'
 
 
 def parameters_for(architecture):
-    return MODEL_D_PARAMETERS if architecture=='modeld' else PARAMETERS
+    if architecture=='modeld18':
+        return [replace(p,choices=('18 dB Low-pass','24 dB High-pass')) if p.name=='filter_mode' else p for p in MODEL_D_PARAMETERS]
+    return MODEL_D_PARAMETERS if engine_key(architecture)=='modeld' else PARAMETERS
 
 
 def specs_for(architecture):
@@ -143,14 +148,16 @@ def validate_patch(data):
         if parameter.choices and value!=round(value):
             raise ValueError(f'{parameter.label} requires a discrete selection')
         checked[parameter.name]=float(value)
-    result={'format':'electribe-desktop-patch-v2' if data['architecture']=='modeld' else 'electribe-desktop-patch-v1',
+    result={'format':'electribe-desktop-patch-v2' if engine_key(data['architecture'])=='modeld' else 'electribe-desktop-patch-v1',
             'name':str(data.get('name','Untitled'))[:80],
             'architecture':data['architecture'],'parameters':checked}
-    if data['architecture']=='modeld':
+    if engine_key(data['architecture'])=='modeld':
         gain=data.get('output_gain_db',0)
         if isinstance(gain,bool) or not isinstance(gain,(int,float)) or not math.isfinite(gain) or not -24<=gain<=24:
             raise ValueError('Patch volume must be between -24 and +24 dB')
         result['output_gain_db']=float(gain)
+    result['eq']=validate_eq(data.get('eq',EQ_DEFAULT))
+    result['reverb']=validate_reverb(data.get('reverb',REVERB_DEFAULT))
     return result
 
 
@@ -179,10 +186,8 @@ def save_patch(name,data,directory=None):
 
 
 def patch_paths():
-    builtins=[ROOT/'baselines/bassline-v1/preset.json',ROOT/'presets/bassline-pluck.json']
-    builtins+=sorted(path for path in (ROOT/'presets').glob('*.json')
-                     if path.name.lower().startswith('model-d-'))
-    return [path for path in builtins if path.exists()]+sorted(USER_PATCHES.glob('*.json'))
+    # Factory/experiment files remain reference archives, outside the active library.
+    return sorted(USER_PATCHES.glob('*.json'))
 
 
 class Notes:

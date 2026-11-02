@@ -9,7 +9,7 @@ from pathlib import Path
 
 import numpy as np
 
-from model import ROOT, read_patch, validate_patch
+from model import ROOT, engine_key, read_patch, validate_patch
 from modeld_preview import render
 
 
@@ -26,7 +26,7 @@ def main():
         original=path.read_bytes()
         data=json.loads(original)
         patch=validate_patch(data)
-        if patch['architecture']!='modeld': continue
+        if engine_key(patch['architecture'])!='modeld': continue
         audio=render(patch,apply_output_gain=False)
         rms=float(np.sqrt(np.mean(audio.astype(np.float64)**2)))
         peak=float(np.max(abs(audio)))

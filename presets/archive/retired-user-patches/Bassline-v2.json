@@ -1,0 +1,30 @@
+{
+  "format": "electribe-desktop-patch-v1",
+  "name": "Bassline v2",
+  "architecture": "svf12",
+  "parameters": {
+    "pulse_blend": 0.238,
+    "pulse_width": 0.8024,
+    "detune_cents": -3.448650120117187,
+    "sub_level": 0.27120000000000005,
+    "cutoff_hz": 180.86642314147332,
+    "filter_env_octaves": 1.7007874015748032,
+    "filter_decay_s": 0.535834454758876,
+    "attack_s": 0.052054395625905685,
+    "amp_decay_s": 0.32688795254503106,
+    "amp_sustain": 0.136,
+    "release_s": 0.2814147730904151,
+    "resonance": 0.6735433070866141,
+    "mixer_drive": 3.1723000000000003,
+    "sub_cutoff_hz": 53.62834773304769,
+    "glide_s": 0.0,
+    "output_drive": 1.2951000000000001,
+    "tune_cents": 0.0,
+    "filter_attack_s": 0.002304806058668401,
+    "filter_sustain": 0.394,
+    "filter_curve": 2.090551181102362,
+    "pulse_env_depth": -0.10570000000000002,
+    "filter_key_tracking": 1.5,
+    "resonance_env_depth": 0.27390000000000003
+  }
+}

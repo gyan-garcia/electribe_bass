@@ -17,7 +17,10 @@ runs/
 
 # Personal reference media, sessions and saved user patches
 /references/
-/presets/user/
+/presets/user/*
+!/presets/user/UK-Res-Bass.json
+!/presets/user/BOSS-03.json
+!/presets/user/Moog-Res.json
 preferences.json
 .env
 .env.*

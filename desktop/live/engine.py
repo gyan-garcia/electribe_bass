@@ -6,6 +6,8 @@ import subprocess
 import threading
 
 import numpy as np
+from eq import Equalizer
+from reverb import Reverb
 
 from model import ARCHITECTURES, NAMES, MODEL_D_NAMES, Notes, engine_key, parameters_for, validate_patch
 
@@ -74,6 +76,10 @@ class Synth:
         self.rate=rate
         self.capacity=capacity
         self.patch=validate_patch(patch)
+        self.eq=Equalizer(rate)
+        self.eq.configure(self.patch['eq'])
+        self.reverb=Reverb(rate)
+        self.reverb.configure(self.patch['reverb'])
         self.setting_buffers={'bass':np.zeros(len(NAMES),dtype=np.float64),
                               'modeld':np.zeros(len(MODEL_D_NAMES),dtype=np.float64)}
         self.family=engine_key(self.patch['architecture'])
@@ -121,6 +127,8 @@ class Synth:
         self.last_note='—'
         self.voice.reset()
         self.modeld_voice.reset()
+        self.eq.reset()
+        self.reverb.reset()
 
     def _midi(self,message):
         kind,channel,first,second=message
@@ -198,6 +206,8 @@ class Synth:
                     self.learn_target=None
                 self.family=family
                 self.patch=patch
+                self.eq.configure(patch['eq'])
+                self.reverb.configure(patch['reverb'])
                 self.specs={parameter.name:parameter for parameter in parameters_for(patch['architecture'])}
                 self.names=list(self.specs)
                 self.indices={name:index for index,name in enumerate(self.names)}
@@ -211,6 +221,10 @@ class Synth:
                 self._panic()
             elif kind=='master':
                 self.master=max(0,min(1,float(values[0])))
+            elif kind=='reverb':
+                self.reverb.configure(values[0])
+            elif kind=='eq':
+                self.eq.configure(values[0])
             elif kind=='output_gain_db':
                 value=values[0]
                 if self.family=='modeld' and not isinstance(value,bool) and np.isfinite(value) and -24<=value<=24:
@@ -256,6 +270,8 @@ class Synth:
         output=self.audio[:frames]
         voice=self.modeld_voice if self.family=='modeld' else self.voice
         voice.process(output,[pitch,gate,trigger,cutoff,resonance],self.settings,self.architecture)
+        self.eq.process(output)
+        self.reverb.process(output)
         voice.gain(output,self.master*(self.velocity/127)**.7*10**(self.output_gain_db/20))
         if not np.all(np.isfinite(output)):
             output.fill(0)
@@ -270,3 +286,5 @@ class Synth:
     def close(self):
         self.voice.close()
         self.modeld_voice.close()
+        self.eq.close()
+        self.reverb.close()

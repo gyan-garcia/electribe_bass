@@ -12,6 +12,9 @@ from PySide6.QtWidgets import (QApplication,QCheckBox,QComboBox,QDial,QDoubleSpi
 
 from model import ROOT, PARAMETERS, SPECS, engine_key, parameters_for, specs_for, patch_paths, read_patch, save_patch
 from engine import Synth
+from reverb import DEFAULT as REVERB_DEFAULT
+from eq import DEFAULT as EQ_DEFAULT
+from eq_view import BANDS as EQ_BANDS, EQCurve, ToneKnob
 from audio_io import Audio, Midi, Recorder, midi_backend, outputs
 
 HERE=Path(__file__).resolve().parent
@@ -134,7 +137,7 @@ class Window(QMainWindow):
         self.specs=specs_for(self.patch['architecture'])
         self.mode_paths={'bass':ROOT/'baselines/bassline-v1/preset.json',
                          'modeld':ROOT/'presets/model-d-bass.json'}
-        reference_candidate=ROOT/'presets/model-d-reference-candidate.json'
+        reference_candidate=ROOT/'presets/user/Moog-Res.json'
         if reference_candidate.exists(): self.mode_paths['modeld']=reference_candidate
         self.synth=Synth(self.patch)
         self.audio=Audio(self.synth)
@@ -262,7 +265,7 @@ class Window(QMainWindow):
         self.patch_volume.setSingleStep(.5)
         self.patch_volume.setSuffix(' dB')
         self.patch_volume.setValue(self.patch.get('output_gain_db',0))
-        self.patch_volume.setEnabled(self.patch['architecture']=='modeld')
+        self.patch_volume.setEnabled(engine_key(self.patch['architecture'])=='modeld')
         self.patch_volume.setToolTip('Clean Model D patch gain after synthesis. Saved with the patch; separate from drive and master.')
         self.patch_volume.valueChanged.connect(self.set_patch_volume)
         bottom.addWidget(self.patch_volume)
@@ -303,6 +306,71 @@ class Window(QMainWindow):
             scroll.setWidgetResizable(True)
             scroll.setWidget(tab)
             self.tabs.addTab(scroll,group.replace('&','&&'))
+        tab=QWidget()
+        layout=QVBoxLayout(tab)
+        self.eq_curve=EQCurve()
+        layout.addWidget(self.eq_curve)
+        row=QHBoxLayout()
+        self.eq_controls={}
+        for key,label in EQ_BANDS:
+            knob=ToneKnob(label,lambda value,k=key:self.eq_changed(k,value))
+            self.eq_controls[key]=knob
+            row.addWidget(knob)
+        layout.addLayout(row)
+        self.eq_hint=QLabel('All three at zero = flat EQ')
+        self.eq_hint.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(self.eq_hint)
+        layout.addStretch()
+        self.load_eq_controls()
+        self.tabs.addTab(tab,'EQ')
+        tab=QWidget()
+        layout=QVBoxLayout(tab)
+        title=QLabel('Small dark room')
+        title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(title)
+        row=QHBoxLayout()
+        self.reverb_controls={
+            'mix':ToneKnob('Mix',lambda value:self.reverb_changed('mix',value/100),0,100,' %',0),
+            'decay':ToneKnob('Decay',lambda value:self.reverb_changed('decay',value),.15,2.5,' s',2)}
+        for knob in self.reverb_controls.values():row.addWidget(knob)
+        layout.addLayout(row)
+        hint=QLabel('Mix at zero = dry · warm room with a softened tail')
+        hint.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(hint)
+        layout.addStretch()
+        self.load_reverb_controls()
+        self.tabs.addTab(tab,'Reverb')
+
+    def load_reverb_controls(self):
+        settings=self.patch.get('reverb',REVERB_DEFAULT)
+        self.reverb_controls['mix'].setValue(settings['mix']*100)
+        self.reverb_controls['decay'].setValue(settings['decay'])
+
+    def reverb_changed(self,key,value):
+        self.patch['reverb']={**self.patch.get('reverb',REVERB_DEFAULT),key:value}
+        self.synth.send('reverb',dict(self.patch['reverb']))
+        self.dirty=True
+        self.dirty_label.setText('● Unsaved')
+
+
+    def load_eq_controls(self):
+        settings=self.patch.get('eq',EQ_DEFAULT)
+        for key,widget in self.eq_controls.items():
+            widget.setValue(settings[key] if settings['enabled'] else 0)
+        self.eq_curve.set_settings(settings)
+        custom=any(settings[k]!=EQ_DEFAULT[k] for k in ('low_hz','mid_hz','mid_q','high_hz'))
+        self.eq_hint.setText('Legacy EQ tuning preserved; editing uses fixed Bass / Mid / Treble.'
+                             if custom and settings['enabled'] else 'All three at zero = flat EQ')
+
+    def eq_changed(self,key,value):
+        old=self.patch.get('eq',EQ_DEFAULT)
+        gains={k:old[k] if old['enabled'] else 0 for k,_ in EQ_BANDS}
+        gains[key]=value
+        self.patch['eq']={**EQ_DEFAULT,**gains,'enabled':any(gains.values())}
+        self.synth.send('eq',dict(self.patch['eq']))
+        self.load_eq_controls()
+        self.dirty=True
+        self.dirty_label.setText('● Unsaved')
 
     def change_mode(self):
         family=self.mode_selector.currentData()
@@ -344,11 +412,11 @@ class Window(QMainWindow):
              'Discard the unsaved changes?',QMessageBox.StandardButton.Yes|QMessageBox.StandardButton.No)==QMessageBox.StandardButton.Yes
 
     def apply_patch(self,patch):
-        changed=engine_key(patch['architecture'])!=engine_key(self.patch['architecture'])
+        changed=patch['architecture']!=self.patch['architecture']
         self.patch=patch
         self.specs=specs_for(patch['architecture'])
         self.architecture_label.setText({'svf12':'12 dB SVF','ladder12':'12 dB cascade','ladder24':'24 dB cascade',
-                                        'modeld':'24 dB nonlinear ladder'}[patch['architecture']])
+                                        'modeld':'24 dB nonlinear ladder','modeld18':'18 dB ladder output'}[patch['architecture']])
         if changed:
             self.mappings={}
             self.waiting_for=None
@@ -360,9 +428,11 @@ class Window(QMainWindow):
             self._patches()
             self.refresh_mapping_status()
         for name,knob in self.knobs.items(): knob.set_value(patch['parameters'][name])
+        self.load_eq_controls()
+        self.load_reverb_controls()
         blocker=QSignalBlocker(self.patch_volume)
         self.patch_volume.setValue(patch.get('output_gain_db',0))
-        self.patch_volume.setEnabled(patch['architecture']=='modeld')
+        self.patch_volume.setEnabled(engine_key(patch['architecture'])=='modeld')
         del blocker
         self.synth.send('patch',patch)
         self.dirty=False
@@ -516,7 +586,7 @@ class Window(QMainWindow):
         self.synth.send('master',10**(value/20))
 
     def set_patch_volume(self,value):
-        if self.patch['architecture']!='modeld': return
+        if engine_key(self.patch['architecture'])!='modeld': return
         self.patch['output_gain_db']=value
         self.synth.send('output_gain_db',value)
         self.dirty=True
@@ -641,9 +711,10 @@ def main():
     app.setStyle('Fusion')
     app.setStyleSheet(STYLE)
     window=Window(args.no_devices)
-    if args.patch:
-        window.apply_patch(read_patch(args.patch))
-        window.current_path=args.patch.resolve()
+    startup_patch=args.patch or ROOT/'presets/user/UK-Res-Bass.json'
+    if startup_patch.exists():
+        window.apply_patch(read_patch(startup_patch))
+        window.current_path=startup_patch.resolve()
         window._patches(window.current_path)
     window.show()
     if args.screenshot:

@@ -6,7 +6,9 @@ import wave
 import numpy as np
 
 from engine import NativeVoice
-from model import ROOT, ARCHITECTURES, MODEL_D_PARAMETERS, parameters_for, validate_patch
+from reverb import Reverb, DEFAULT as REVERB_DEFAULT
+from eq import Equalizer, DEFAULT as EQ_DEFAULT
+from model import ROOT, ARCHITECTURES, MODEL_D_PARAMETERS, engine_key, parameters_for, validate_patch
 
 
 def factory():
@@ -49,7 +51,7 @@ def render(patch,blocksize=256,apply_output_gain=True):
         controls[0][left:right]=event['frequency']
         controls[1][left:max(left,right-1200)]=1
         controls[2][left]=1
-    voice=NativeVoice(rate,'modeld' if patch['architecture']=='modeld' else 'bass')
+    voice=NativeVoice(rate,engine_key(patch['architecture']))
     settings=np.array([patch['parameters'][spec.name] for spec in parameters_for(patch['architecture'])],dtype=np.float64)
     output=np.zeros(frames,dtype=np.float32)
     try:
@@ -58,6 +60,18 @@ def render(patch,blocksize=256,apply_output_gain=True):
             voice.process(output[start:end],[control[start:end] for control in controls],settings,ARCHITECTURES[patch['architecture']])
     finally:
         voice.close()
+    equalizer=Equalizer(rate)
+    try:
+        equalizer.configure(patch.get('eq',EQ_DEFAULT))
+        equalizer.process(output)
+    finally:
+        equalizer.close()
+    room=Reverb(rate)
+    try:
+        room.configure(patch.get('reverb',REVERB_DEFAULT))
+        room.process(output)
+    finally:
+        room.close()
     if apply_output_gain: output*=10**(patch.get('output_gain_db',0)/20)
     return output
 
