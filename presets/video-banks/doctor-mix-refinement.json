@@ -1,0 +1,77 @@
+[
+  {
+    "patch": "DM-Hip-Hop-Lead",
+    "source_seconds": [
+      154,
+      164
+    ],
+    "estimated_fundamentals": [
+      521.74,
+      1043.48,
+      666.67
+    ],
+    "before_mean_harmonic_db_error": 2.9312793770478542,
+    "after_mean_harmonic_db_error": 2.216312052464559,
+    "updates": {
+      "cutoff_hz": 2866.3621181644617
+    },
+    "limitations": "Short-note normalized harmonic comparison, inferred pitches and onsets. Not perceptual verification; excludes timing, effects and oscillator phase."
+  },
+  {
+    "patch": "DM-Soulful-Bass",
+    "source_seconds": [
+      347,
+      365
+    ],
+    "estimated_fundamentals": [
+      55.43,
+      74.07,
+      66.12
+    ],
+    "before_mean_harmonic_db_error": 14.400064056456499,
+    "after_mean_harmonic_db_error": 1.651600586618434,
+    "updates": {
+      "cutoff_hz": 347.29905598505337,
+      "filter_env_octaves": 4.536977555188767,
+      "filter_decay_s": 0.5966761462304526,
+      "resonance": 0.18010465057825636
+    },
+    "limitations": "Short-note normalized harmonic comparison, inferred pitches and onsets. Not perceptual verification; excludes timing, effects and oscillator phase."
+  },
+  {
+    "patch": "DM-Power-Bass",
+    "source_seconds": [
+      717,
+      736
+    ],
+    "estimated_fundamentals": [
+      175.18,
+      65.4,
+      32.79
+    ],
+    "before_mean_harmonic_db_error": 6.932324212308156,
+    "after_mean_harmonic_db_error": 6.888434525879958,
+    "updates": {
+      "cutoff_hz": 711.5122479520592,
+      "filter_env_octaves": 1.7433408962902304,
+      "filter_decay_s": 0.16092054183860038
+    },
+    "limitations": "Short-note normalized harmonic comparison, inferred pitches and onsets. Not perceptual verification; excludes timing, effects and oscillator phase."
+  },
+  {
+    "patch": "DM-Super-Lead",
+    "source_seconds": [
+      905,
+      923
+    ],
+    "estimated_fundamentals": [
+      109.09,
+      97.96,
+      97.56
+    ],
+    "before_mean_harmonic_db_error": 16.78891575546687,
+    "after_mean_harmonic_db_error": 16.78891575546687,
+    "updates": {},
+    "limitations": "Short-note normalized harmonic comparison, inferred pitches and onsets. Not perceptual verification; excludes timing, effects and oscillator phase."
+  }
+]
