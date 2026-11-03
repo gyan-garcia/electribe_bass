@@ -5,6 +5,10 @@ Current artifact is an isolated ARM/DSP dry, muted probe, not SYSTEM.VSB.
 
 ## Established loading path and outstanding inputs
 
+Update: INSTALLATION_RESEARCH.md documents a newer upstream closed-case route:
+Hacktribe via SD, then Freetribe RAM loading through external TRS MIDI. It is not
+yet verified for MYXA. The debugger route below remains a fallback.
+
 The pinned Freetribe debugging.md describes an ARM debugger (JLink or Raspberry
 Pi/OpenOCD) and loading the ARM ELF. That ARM application uploads the DSP loader
 via SPI; a separate DSP debugger is not mandatory to execute it. Its .gdbinit

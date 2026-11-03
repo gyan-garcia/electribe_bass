@@ -133,3 +133,12 @@ observations and the pending hardware-loading/recovery checks are recorded in
 FIRST_DEVICE_TEST.md. No test loader is invoked by these documents. The ARM shell
 now connects glide, amp/filter envelope timing, oscillator waveform and LFO
 controls; MIDI channel and pad octave are selectable via temporary Shift shortcuts.
+
+See INSTALLATION_RESEARCH.md for the newly verified upstream documentation of
+Hacktribe SD installation followed by external TRS MIDI Freetribe RAM loading.
+This is a potential closed-case route, not a validated MYXA installation package.
+
+The follow-up installation research now includes a first-person upstream report
+of successful MIDI-loaded monosynth execution and a fake-MIDI test of the real
+upstream client. See INSTALLATION_RESEARCH.md for the distinction between that
+working route and MYXA-specific hardware validation, which remains pending.
