@@ -1,0 +1,387 @@
+{
+  "version": 1,
+  "parameters": [
+    {
+      "id": 1,
+      "key": "osc1_wave",
+      "minimum": 0,
+      "maximum": 5,
+      "discrete": true
+    },
+    {
+      "id": 2,
+      "key": "osc1_octave",
+      "minimum": -2,
+      "maximum": 2,
+      "discrete": true
+    },
+    {
+      "id": 3,
+      "key": "osc1_tune",
+      "minimum": -7,
+      "maximum": 7,
+      "discrete": false
+    },
+    {
+      "id": 4,
+      "key": "osc1_low",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 5,
+      "key": "osc2_wave",
+      "minimum": 0,
+      "maximum": 5,
+      "discrete": true
+    },
+    {
+      "id": 6,
+      "key": "osc2_octave",
+      "minimum": -2,
+      "maximum": 2,
+      "discrete": true
+    },
+    {
+      "id": 7,
+      "key": "osc2_tune",
+      "minimum": -7,
+      "maximum": 7,
+      "discrete": false
+    },
+    {
+      "id": 8,
+      "key": "osc2_low",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 9,
+      "key": "osc3_wave",
+      "minimum": 0,
+      "maximum": 5,
+      "discrete": true
+    },
+    {
+      "id": 10,
+      "key": "osc3_octave",
+      "minimum": -2,
+      "maximum": 2,
+      "discrete": true
+    },
+    {
+      "id": 11,
+      "key": "osc3_tune",
+      "minimum": -7,
+      "maximum": 7,
+      "discrete": false
+    },
+    {
+      "id": 12,
+      "key": "osc3_low",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 13,
+      "key": "osc3_keyboard",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 14,
+      "key": "osc3_fixed_hz",
+      "minimum": 0.1,
+      "maximum": 2000,
+      "discrete": false
+    },
+    {
+      "id": 15,
+      "key": "osc1_level",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": false
+    },
+    {
+      "id": 16,
+      "key": "osc2_level",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": false
+    },
+    {
+      "id": 17,
+      "key": "osc3_level",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": false
+    },
+    {
+      "id": 18,
+      "key": "noise_level",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": false
+    },
+    {
+      "id": 19,
+      "key": "noise_color",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 20,
+      "key": "mixer_drive",
+      "minimum": 0.2,
+      "maximum": 5,
+      "discrete": false
+    },
+    {
+      "id": 21,
+      "key": "feedback_level",
+      "minimum": 0,
+      "maximum": 0.7,
+      "discrete": false
+    },
+    {
+      "id": 22,
+      "key": "output_drive",
+      "minimum": 0.2,
+      "maximum": 2,
+      "discrete": false
+    },
+    {
+      "id": 23,
+      "key": "cutoff_hz",
+      "minimum": 20,
+      "maximum": 18000,
+      "discrete": false
+    },
+    {
+      "id": 24,
+      "key": "resonance",
+      "minimum": 0,
+      "maximum": 1.1,
+      "discrete": false
+    },
+    {
+      "id": 25,
+      "key": "filter_env_octaves",
+      "minimum": -6,
+      "maximum": 8,
+      "discrete": false
+    },
+    {
+      "id": 26,
+      "key": "filter_mode",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 27,
+      "key": "keytrack_1",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 28,
+      "key": "keytrack_2",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 29,
+      "key": "filter_attack_s",
+      "minimum": 0,
+      "maximum": 3,
+      "discrete": false
+    },
+    {
+      "id": 30,
+      "key": "filter_decay_s",
+      "minimum": 0.005,
+      "maximum": 5,
+      "discrete": false
+    },
+    {
+      "id": 31,
+      "key": "filter_sustain",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": false
+    },
+    {
+      "id": 32,
+      "key": "attack_s",
+      "minimum": 0,
+      "maximum": 3,
+      "discrete": false
+    },
+    {
+      "id": 33,
+      "key": "amp_decay_s",
+      "minimum": 0.005,
+      "maximum": 5,
+      "discrete": false
+    },
+    {
+      "id": 34,
+      "key": "amp_sustain",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": false
+    },
+    {
+      "id": 35,
+      "key": "release_enabled",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 36,
+      "key": "glide_s",
+      "minimum": 0,
+      "maximum": 2,
+      "discrete": false
+    },
+    {
+      "id": 37,
+      "key": "tune_cents",
+      "minimum": -100,
+      "maximum": 100,
+      "discrete": false
+    },
+    {
+      "id": 38,
+      "key": "lfo_rate_hz",
+      "minimum": 0.05,
+      "maximum": 200,
+      "discrete": false
+    },
+    {
+      "id": 39,
+      "key": "lfo_wave",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 40,
+      "key": "mod_source_1",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 41,
+      "key": "mod_source_2",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 42,
+      "key": "mod_mix",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": false
+    },
+    {
+      "id": 43,
+      "key": "mod_amount",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": false
+    },
+    {
+      "id": 44,
+      "key": "pitch_mod_enabled",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 45,
+      "key": "pitch_mod_depth",
+      "minimum": 0,
+      "maximum": 12,
+      "discrete": false
+    },
+    {
+      "id": 46,
+      "key": "filter_mod_enabled",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": true
+    },
+    {
+      "id": 47,
+      "key": "filter_mod_depth",
+      "minimum": 0,
+      "maximum": 6,
+      "discrete": false
+    },
+    {
+      "id": 48,
+      "key": "pan",
+      "minimum": -1,
+      "maximum": 1,
+      "discrete": false
+    },
+    {
+      "id": 49,
+      "key": "output_gain_db",
+      "minimum": -24,
+      "maximum": 24,
+      "discrete": false
+    },
+    {
+      "id": 50,
+      "key": "eq_bass_db",
+      "minimum": -12,
+      "maximum": 12,
+      "discrete": false
+    },
+    {
+      "id": 51,
+      "key": "eq_mid_db",
+      "minimum": -12,
+      "maximum": 12,
+      "discrete": false
+    },
+    {
+      "id": 52,
+      "key": "eq_treble_db",
+      "minimum": -12,
+      "maximum": 12,
+      "discrete": false
+    },
+    {
+      "id": 53,
+      "key": "reverb_mix",
+      "minimum": 0,
+      "maximum": 1,
+      "discrete": false
+    },
+    {
+      "id": 54,
+      "key": "reverb_decay_s",
+      "minimum": 0.15,
+      "maximum": 2.5,
+      "discrete": false
+    }
+  ],
+  "engine_ids": {
+    "modeld": 3,
+    "modeld18": 4
+  }
+}

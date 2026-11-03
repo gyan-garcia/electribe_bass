@@ -89,3 +89,10 @@ The existing CPU monosynth runs envelopes/LFOs and converts floating-point
 control values into fixed-point DSP parameters. Its pad callback counts held
 notes and has a TODO for a note stack; note priority and unmatched note-offs
 need attention before relying on it as a performance instrument.
+
+## MYXA firmware design
+
+The initial v1 specification and implementation gates are in
+[myxa/DESIGN.md](myxa/DESIGN.md). It distinguishes agreed scope from proposed
+control assignments and unverified hardware capabilities. No firmware is flashed
+by the design workflow.

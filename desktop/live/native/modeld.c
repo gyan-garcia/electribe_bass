@@ -152,30 +152,51 @@ static float ladder(ModelDState *state,float input,float coefficient,float reson
     return highpass ? original-4.0f*taps[0]+6.0f*taps[1]-4.0f*taps[2]+taps[3] : taps[output_stage];
 }
 
-void synth_process(ModelDState *state,float *output,const float *pitch,const float *gate,
+typedef struct {
+    float settings[PARAM_COUNT];
+    float attack_amp,attack_filter,decay_amp,decay_filter,release_amp,release_filter;
+    float glide,smoothing,dc,tracking,ratio[3],pink_coefficients[3];
+} ModelDPrepared;
+
+/* Call on initialization, sample-rate changes or parameter updates. */
+void synth_prepare(ModelDPrepared *prepared,const double *parameters,int sample_rate) {
+    float rate=(float)sample_rate*2;
+    float *settings=prepared->settings;
+    for(int index=0;index<PARAM_COUNT;index++)settings[index]=(float)parameters[index];
+    prepared->attack_amp=settings[AMP_ATTACK]<=0 ? 1 : 1-expf(-6.907755f/(settings[AMP_ATTACK]*rate));
+    prepared->attack_filter=settings[FILTER_ATTACK]<=0 ? 1 : 1-expf(-6.907755f/(settings[FILTER_ATTACK]*rate));
+    prepared->decay_amp=expf(-4.60517f/(settings[AMP_DECAY]*rate));
+    prepared->decay_filter=expf(-4.60517f/(settings[FILTER_DECAY]*rate));
+    prepared->release_amp=expf(-6.907755f/((settings[RELEASE_ENABLED]>.5f ? settings[AMP_DECAY] : .005f)*rate));
+    prepared->release_filter=expf(-6.907755f/((settings[RELEASE_ENABLED]>.5f ? settings[FILTER_DECAY] : .005f)*rate));
+    prepared->glide=1-expf(-1.0f/(fmaxf(.0001f,settings[GLIDE])*rate));
+    prepared->smoothing=1-expf(-1.0f/(.008f*rate));
+    prepared->dc=expf(-6.283185307f*4.0f/rate);
+    float master=exp2f(settings[TUNE]/1200.0f);
+    for (int oscillator=0;oscillator<3;oscillator++)
+        prepared->ratio[oscillator]=exp2f(settings[oscillator*4+1]+settings[oscillator*4+2]/12.0f)*master;
+    const float pink_frequencies[3]={70,500,3000};
+    for (int index=0;index<3;index++) prepared->pink_coefficients[index]=1-expf(-6.283185307f*pink_frequencies[index]/rate);
+    prepared->tracking=(settings[KEYTRACK1]+2.0f*settings[KEYTRACK2])/3.0f;
+}
+
+void synth_process_prepared(ModelDState *state,float *output,const float *pitch,const float *gate,
                    const float *trigger,const float *cutoff_scale,const float *resonance,
-                   int frames,const double *parameters,int architecture) {
+                   int frames,const ModelDPrepared *prepared,int architecture) {
     const int oversample=2;
     float rate=(float)state->rate*oversample;
-    float settings[PARAM_COUNT];
-    for (int index=0;index<PARAM_COUNT;index++) settings[index]=(float)parameters[index];
-    float attack_amp=settings[AMP_ATTACK]<=0 ? 1 : 1-expf(-6.907755f/(settings[AMP_ATTACK]*rate));
-    float attack_filter=settings[FILTER_ATTACK]<=0 ? 1 : 1-expf(-6.907755f/(settings[FILTER_ATTACK]*rate));
-    float decay_amp=expf(-4.60517f/(settings[AMP_DECAY]*rate));
-    float decay_filter=expf(-4.60517f/(settings[FILTER_DECAY]*rate));
-    float release_amp=expf(-6.907755f/((settings[RELEASE_ENABLED]>.5f ? settings[AMP_DECAY] : .005f)*rate));
-    float release_filter=expf(-6.907755f/((settings[RELEASE_ENABLED]>.5f ? settings[FILTER_DECAY] : .005f)*rate));
-    float glide=1-expf(-1.0f/(fmaxf(.0001f,settings[GLIDE])*rate));
-    float smoothing=1-expf(-1.0f/(.008f*rate));
-    float dc=expf(-6.283185307f*4.0f/rate);
-    float master=exp2f(settings[TUNE]/1200.0f);
-    float ratio[3];
-    for (int oscillator=0;oscillator<3;oscillator++)
-        ratio[oscillator]=exp2f(settings[oscillator*4+1]+settings[oscillator*4+2]/12.0f)*master;
-    float pink_coefficients[3];
-    const float pink_frequencies[3]={70,500,3000};
-    for (int index=0;index<3;index++) pink_coefficients[index]=1-expf(-6.283185307f*pink_frequencies[index]/rate);
-    float tracking=(settings[KEYTRACK1]+2.0f*settings[KEYTRACK2])/3.0f;
+    const float *settings=prepared->settings;
+    const float *ratio=prepared->ratio,*pink_coefficients=prepared->pink_coefficients;
+    float attack_amp=prepared->attack_amp;
+    float attack_filter=prepared->attack_filter;
+    float decay_amp=prepared->decay_amp;
+    float decay_filter=prepared->decay_filter;
+    float release_amp=prepared->release_amp;
+    float release_filter=prepared->release_filter;
+    float glide=prepared->glide;
+    float smoothing=prepared->smoothing;
+    float dc=prepared->dc;
+    float tracking=prepared->tracking;
     for (int frame=0;frame<frames;frame++) {
         if (state->tracking_pitch!=pitch[frame] || state->tracking_depth!=tracking) {
             state->tracking_pitch=pitch[frame]; state->tracking_depth=tracking;
@@ -232,4 +253,13 @@ void synth_process(ModelDState *state,float *output,const float *pitch,const flo
         }
         output[frame]=accumulated/oversample;
     }
+}
+
+/* Desktop block API retained for callers that edit their parameter array. */
+void synth_process(ModelDState *state,float *output,const float *pitch,const float *gate,
+                   const float *trigger,const float *cutoff_scale,const float *resonance,
+                   int frames,const double *parameters,int architecture) {
+    ModelDPrepared prepared;
+    synth_prepare(&prepared,parameters,state->rate);
+    synth_process_prepared(state,output,pitch,gate,trigger,cutoff_scale,resonance,frames,&prepared,architecture);
 }
