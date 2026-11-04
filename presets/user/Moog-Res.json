@@ -1,7 +1,7 @@
 {
   "format": "electribe-desktop-patch-v2",
   "name": "Moog Res",
-  "architecture": "modeld18",
+  "architecture": "modeld",
   "parameters": {
     "osc1_wave": 2.0,
     "osc1_octave": 0.0,
@@ -25,10 +25,10 @@
     "mixer_drive": 0.20533219018506216,
     "feedback_level": 0.012998361999096283,
     "output_drive": 1.0,
-    "cutoff_hz": 64.84464932190217,
+    "cutoff_hz": 71.1458454959151,
     "resonance": 0.4115727264427522,
-    "filter_env_octaves": 4.702323091349351,
-    "filter_mode": 0.0,
+    "filter_env_octaves": 4.699327105841067,
+    "filter_mode": 0,
     "keytrack_1": 1.0,
     "keytrack_2": 1.0,
     "filter_attack_s": 0.014936275242587773,
@@ -51,5 +51,19 @@
     "filter_mod_enabled": 0.0,
     "filter_mod_depth": 2.0
   },
-  "output_gain_db": 20.46
+  "output_gain_db": 20.762360965121424,
+  "eq": {
+    "enabled": false,
+    "low_hz": 100.0,
+    "low_db": 0.0,
+    "mid_hz": 700.0,
+    "mid_db": 0.0,
+    "mid_q": 0.7,
+    "high_hz": 2500.0,
+    "high_db": 0.0
+  },
+  "reverb": {
+    "mix": 0.0,
+    "decay": 0.6
+  }
 }

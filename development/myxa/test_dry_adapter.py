@@ -24,7 +24,7 @@ for index,name in enumerate(('UK-Res-Bass','BOSS-03','Moog-Res')):
     settings=np.array([patch['parameters'][p.name] for p in MODEL_D_PARAMETERS],np.float32).astype(np.float64)
     voice=NativeVoice(48000,'modeld')
     try:
-        voice.process(expected,[pitch,gate,trigger,np.ones(n,np.float32),np.full(n,patch['parameters']['resonance'],np.float32)],settings,4)
+        voice.process(expected,[pitch,gate,trigger,np.ones(n,np.float32),np.full(n,patch['parameters']['resonance'],np.float32)],settings,3)
     finally:voice.close()
     np.testing.assert_allclose(actual,expected,rtol=0,atol=2e-6)
     print(name,'max difference',float(abs(actual-expected).max()))
@@ -47,6 +47,7 @@ for index,name in enumerate(('UK-Res-Bass','BOSS-03','Moog-Res')):
         for step in range(100):
             k=step%len(settings);spec=MODEL_D_PARAMETERS[k]
             value=float(rng.integers(spec.minimum,spec.maximum+1)) if spec.choices else spec.minimum+(spec.maximum-spec.minimum)*rng.random()
+            if spec.name=='filter_mode':value=0  # Reserved compatibility slot.
             settings[k]=value
             assert lib.myxa_dry_set_parameter(k,value)==0
             count=257
@@ -54,7 +55,7 @@ for index,name in enumerate(('UK-Res-Bass','BOSS-03','Moog-Res')):
             gate=np.full(count,step%5!=0,np.float32);trigger=np.zeros(count,np.float32);trigger[0]=step%3==0
             actual=np.zeros(count,np.float32);expected=actual.copy()
             lib.myxa_dry_process(pitch,gate,trigger,actual,count)
-            old.process(expected,[pitch,gate,trigger,np.ones(count,np.float32),np.full(count,settings[23],np.float32)],settings,4)
+            old.process(expected,[pitch,gate,trigger,np.ones(count,np.float32),np.full(count,settings[23],np.float32)],settings,3)
             np.testing.assert_array_equal(actual,expected)
     finally:old.close()
 print('Frozen-engine parity passed: all parameter updates, pitch/gates and active modulation.')

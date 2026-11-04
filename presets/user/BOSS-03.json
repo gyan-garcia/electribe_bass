@@ -1,7 +1,7 @@
 {
   "format": "electribe-desktop-patch-v2",
   "name": "BOSS 03",
-  "architecture": "modeld18",
+  "architecture": "modeld",
   "parameters": {
     "osc1_wave": 3.0,
     "osc1_octave": 0.0,
@@ -25,10 +25,10 @@
     "mixer_drive": 0.368,
     "feedback_level": 0.012998361999096283,
     "output_drive": 1.0,
-    "cutoff_hz": 58.380127148443464,
+    "cutoff_hz": 68.73665772819326,
     "resonance": 0.2251968503937008,
-    "filter_env_octaves": 4.702323091349351,
-    "filter_mode": 0.0,
+    "filter_env_octaves": 4.69178107996648,
+    "filter_mode": 0,
     "keytrack_1": 1.0,
     "keytrack_2": 1.0,
     "filter_attack_s": 0.014936275242587773,
@@ -51,7 +51,7 @@
     "filter_mod_enabled": 0.0,
     "filter_mod_depth": 2.0
   },
-  "output_gain_db": 20.46,
+  "output_gain_db": 20.637667866823545,
   "eq": {
     "enabled": true,
     "low_hz": 100.0,

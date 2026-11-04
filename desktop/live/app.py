@@ -291,7 +291,7 @@ class Window(QMainWindow):
             self.tabs.removeTab(0)
             widget.deleteLater()
         self.knobs={}
-        parameters=parameters_for(self.patch['architecture'])
+        parameters=list(specs_for(self.patch['architecture']).values())
         for group in dict.fromkeys(parameter.group for parameter in parameters):
             tab=QWidget()
             grid=QGridLayout(tab)
@@ -393,7 +393,8 @@ class Window(QMainWindow):
             QMessageBox.warning(self,'Cannot change engine',str(error))
 
     def _patches(self,selected=None):
-        self.patch_selector.blockSignals(True)
+        selected=str(selected if selected is not None else self.current_path)
+        blocker=QSignalBlocker(self.patch_selector)
         self.patch_selector.clear()
         for path in patch_paths():
             try:
@@ -402,10 +403,13 @@ class Window(QMainWindow):
                 self.patch_selector.addItem(patch['name'],str(path))
             except (OSError,ValueError):
                 continue
-        if selected:
-            index=self.patch_selector.findData(str(selected))
-            if index>=0: self.patch_selector.setCurrentIndex(index)
-        self.patch_selector.blockSignals(False)
+        index=self.patch_selector.findData(selected)
+        if index<0 and selected==str(self.current_path):
+            # Imported and historical reference patches need a truthful label too.
+            self.patch_selector.addItem(self.patch['name'],selected)
+            index=self.patch_selector.count()-1
+        self.patch_selector.setCurrentIndex(index)
+        del blocker
 
     def _confirm_discard(self):
         return not self.dirty or QMessageBox.question(self,'Unsaved patch',
@@ -416,7 +420,7 @@ class Window(QMainWindow):
         self.patch=patch
         self.specs=specs_for(patch['architecture'])
         self.architecture_label.setText({'svf12':'12 dB SVF','ladder12':'12 dB cascade','ladder24':'24 dB cascade',
-                                        'modeld':'24 dB nonlinear ladder','modeld18':'18 dB ladder output'}[patch['architecture']])
+                                        'modeld':'24 dB/octave low-pass','modeld18':'24 dB/octave low-pass'}[patch['architecture']])
         if changed:
             self.mappings={}
             self.waiting_for=None
@@ -449,7 +453,9 @@ class Window(QMainWindow):
             path=self.patch_selector.currentData()
             self.apply_patch(read_patch(path))
             self.current_path=Path(path)
+            self._patches(self.current_path)
         except (OSError,ValueError) as error:
+            self._patches(self.current_path)
             QMessageBox.warning(self,'Cannot load patch',str(error))
 
     def parameter_changed(self,name,value):

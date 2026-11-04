@@ -1,0 +1,125 @@
+{
+  "core_sha256": "55b44467ab43152003cc1dc8626e2c01b7695894267388c945581b62d3629ded",
+  "presets_unchanged": 102,
+  "sample_rate": 48000,
+  "oscillator_measurements": [
+    {
+      "waveform": "triangle",
+      "frequency_hz": 498.046875,
+      "mean": 0.0,
+      "non_harmonic_energy_db_relative_to_fundamental": -63.405453103482586
+    },
+    {
+      "waveform": "saw",
+      "frequency_hz": 498.046875,
+      "mean": 4.656612873077393e-10,
+      "non_harmonic_energy_db_relative_to_fundamental": -28.716234484264312
+    },
+    {
+      "waveform": "square",
+      "frequency_hz": 498.046875,
+      "mean": 0.0,
+      "non_harmonic_energy_db_relative_to_fundamental": -31.510021663734396
+    },
+    {
+      "waveform": "pulse25",
+      "frequency_hz": 498.046875,
+      "mean": -0.5,
+      "non_harmonic_energy_db_relative_to_fundamental": -28.509850407063052
+    },
+    {
+      "waveform": "pulse10",
+      "frequency_hz": 498.046875,
+      "mean": -0.7999999523162842,
+      "non_harmonic_energy_db_relative_to_fundamental": -22.20614879598063
+    },
+    {
+      "waveform": "triangle",
+      "frequency_hz": 4107.421875,
+      "mean": 0.0,
+      "non_harmonic_energy_db_relative_to_fundamental": -37.03744820125186
+    },
+    {
+      "waveform": "saw",
+      "frequency_hz": 4107.421875,
+      "mean": 5.820766091346741e-11,
+      "non_harmonic_energy_db_relative_to_fundamental": -18.15833900690588
+    },
+    {
+      "waveform": "square",
+      "frequency_hz": 4107.421875,
+      "mean": 0.0,
+      "non_harmonic_energy_db_relative_to_fundamental": -23.342596028461706
+    },
+    {
+      "waveform": "pulse25",
+      "frequency_hz": 4107.421875,
+      "mean": -0.4999999701976776,
+      "non_harmonic_energy_db_relative_to_fundamental": -16.457832166459347
+    },
+    {
+      "waveform": "pulse10",
+      "frequency_hz": 4107.421875,
+      "mean": -0.7999999523162842,
+      "non_harmonic_energy_db_relative_to_fundamental": -9.270369786218787
+    }
+  ],
+  "resonance_passband": [
+    {
+      "resonance": 0,
+      "passband_gain_db": -0.04336950886837965
+    },
+    {
+      "resonance": 0.3,
+      "passband_gain_db": -6.8251486273163176
+    },
+    {
+      "resonance": 0.5,
+      "passband_gain_db": -9.518301445488035
+    },
+    {
+      "resonance": 0.7,
+      "passband_gain_db": -11.573419884064148
+    },
+    {
+      "resonance": 0.9,
+      "passband_gain_db": -13.235051083060975
+    }
+  ],
+  "pulse_bias": [
+    {
+      "waveform": "pulse25",
+      "dc_balanced_input": false,
+      "input_mean": -0.5,
+      "output_mean": -0.133250551675511,
+      "output_ac_rms": 0.23371823410933448
+    },
+    {
+      "waveform": "pulse25",
+      "dc_balanced_input": true,
+      "input_mean": 3.178914353973994e-10,
+      "output_mean": -0.006529057680892745,
+      "output_ac_rms": 0.23176858836305084
+    },
+    {
+      "waveform": "pulse10",
+      "dc_balanced_input": false,
+      "input_mean": -0.800000011920929,
+      "output_mean": -0.21085823398481202,
+      "output_ac_rms": 0.17137283100848752
+    },
+    {
+      "waveform": "pulse10",
+      "dc_balanced_input": true,
+      "input_mean": -7.311502958629035e-09,
+      "output_mean": -0.005804762585746681,
+      "output_ac_rms": 0.16842271277493467
+    }
+  ],
+  "limitations": [
+    "Oscillator-only coherent FFT; measures non-harmonic folded energy, not whole-patch perceived aliasing.",
+    "Filter probe holds each 48 kHz input sample for two internal samples and averages outputs; not a full synth render.",
+    "Pulse-centering probe is a diagnostic, not a calibrated analogue circuit model or an approved improvement.",
+    "No comparisons of complete competitor audio engines, listening tests, or Blackfin timing measurements."
+  ]
+}

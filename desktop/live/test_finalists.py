@@ -9,8 +9,8 @@ from modeld_preview import render
 from hour_search import Voice, controls_for
 
 class FinalistTests(unittest.TestCase):
-    def test_both_match_frozen_audition_engine(self):
-        source=ROOT/'desktop/live/fixtures/ladder18-audition.c'
+    def test_legacy_finalists_import_as_24db_and_match_frozen_24db_path(self):
+        source=ROOT/'desktop/live/fixtures/modeld-before-cache.c'
         with tempfile.TemporaryDirectory() as directory:
             from pathlib import Path
             library=Path(directory)/'reference.so'
@@ -24,7 +24,7 @@ class FinalistTests(unittest.TestCase):
                     actual=render(patch,apply_output_gain=False)
                     np.testing.assert_array_equal(actual,expected)
                     path=save_patch('roundtrip',patch,directory)
-                    self.assertEqual(read_patch(path)['architecture'],'modeld18')
+                    self.assertEqual(read_patch(path)['architecture'],'modeld')
                     self.assertEqual(read_patch(path)['parameters'],patch['parameters'])
             finally:voice.voice.close()
 
@@ -37,15 +37,15 @@ class FinalistTests(unittest.TestCase):
         try:
             patch=read_patch(ROOT/'presets/Model-D-18dB-Finalist-2.json')
             window.apply_patch(patch);window.tick()
-            self.assertEqual(window.synth.architecture,4)
-            self.assertIn('18 dB',window.architecture_label.text())
-            self.assertEqual(window.knobs['filter_mode'].spin.itemText(0),'18 dB Low-pass')
+            self.assertEqual(window.synth.architecture,3)
+            self.assertIn('24 dB',window.architecture_label.text())
+            self.assertNotIn('filter_mode',window.knobs)
             self.assertTrue(window.patch_volume.isEnabled())
             self.assertEqual(window.synth.output_gain_db,patch['output_gain_db'])
             window.begin_mapping('cutoff_hz');window.synth.send('midi',('control_change',0,20,40));window.tick()
             window.apply_patch(read_patch(ROOT/'presets/model-d-bass.json'));window.tick()
             self.assertEqual(window.synth.architecture,3)
-            self.assertEqual(window.knobs['filter_mode'].spin.itemText(0),'24 dB Low-pass')
+            self.assertNotIn('filter_mode',window.knobs)
             self.assertEqual(window.mappings,{'0:20':'cutoff_hz'})
         finally:
             window.dirty=False;window.close();app.processEvents()

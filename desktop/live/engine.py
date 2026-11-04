@@ -194,7 +194,7 @@ class Synth:
             elif kind=='parameter':
                 name,value=values
                 spec=self.specs.get(name)
-                if spec and np.isfinite(value) and spec.minimum<=value<=spec.maximum:
+                if name!='filter_mode' and spec and np.isfinite(value) and spec.minimum<=value<=spec.maximum:
                     if not spec.choices or value==round(value): self.settings[self.indices[name]]=value
             elif kind=='patch':
                 patch=validate_patch(values[0])
@@ -235,10 +235,10 @@ class Synth:
                 self.channel=values[0]
                 self._panic()
             elif kind=='learn':
-                self.learn_target=values[0] if values[0] in self.specs else None
+                self.learn_target=values[0] if values[0] in self.specs and values[0]!='filter_mode' else None
                 self.notifications.put(('learning',self.family,self.learn_target))
             elif kind=='mapping':
-                self.mapping={key:name for key,name in values[0].items() if name in self.specs}
+                self.mapping={key:name for key,name in values[0].items() if name in self.specs and name!='filter_mode'}
                 self.notifications.put(('mapping',self.family,dict(self.mapping)))
             elif kind=='unmap':
                 self.mapping={key:name for key,name in self.mapping.items() if name!=values[0]}

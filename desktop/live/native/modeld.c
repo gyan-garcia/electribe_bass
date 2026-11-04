@@ -129,6 +129,8 @@ static float envelope(float value,int *stage,int gate,int trigger,float attack,
 }
 
 static float ladder(ModelDState *state,float input,float coefficient,float resonance,int highpass,int output_stage) {
+    /* Legacy mode/tap arguments are reserved; the Model D voice is always LP24. */
+    (void)highpass; (void)output_stage;
     float gain=coefficient;
     float squared=gain*gain;
     float fourth=squared*squared;
@@ -141,15 +143,12 @@ static float ladder(ModelDState *state,float input,float coefficient,float reson
         float argument=source-feedback*fourth*value;
         value-=(value-saturate(argument))/(1.0f+feedback*fourth*slope(argument));
     }
-    float original=value;
-    float taps[4];
     for (int stage=0;stage<4;stage++) {
         float difference=(value-state->poles[stage])*gain;
         value=difference+state->poles[stage];
         state->poles[stage]=value+difference;
-        taps[stage]=value;
     }
-    return highpass ? original-4.0f*taps[0]+6.0f*taps[1]-4.0f*taps[2]+taps[3] : taps[output_stage];
+    return value;
 }
 
 typedef struct {
@@ -183,6 +182,7 @@ void synth_prepare(ModelDPrepared *prepared,const double *parameters,int sample_
 void synth_process_prepared(ModelDState *state,float *output,const float *pitch,const float *gate,
                    const float *trigger,const float *cutoff_scale,const float *resonance,
                    int frames,const ModelDPrepared *prepared,int architecture) {
+    (void)architecture; /* Retained ABI argument; all IDs now use LP24. */
     const int oversample=2;
     float rate=(float)state->rate*oversample;
     const float *settings=prepared->settings;
@@ -244,7 +244,7 @@ void synth_process_prepared(ModelDState *state,float *output,const float *pitch,
             }
             state->coefficient_counter=(state->coefficient_counter+1)%8;
             float input=mixed*state->smooth[4]+state->previous_output*state->smooth[5];
-            float filtered=ladder(state,input,state->coefficient,state->smooth[7],settings[FILTER_MODE]>.5f,architecture==4 ? 2 : 3);
+            float filtered=ladder(state,input,state->coefficient,state->smooth[7],0,3);
             float value=saturate(filtered*state->amp*state->smooth[8]);
             state->previous_output=value;
             float blocked=value-state->dc_input+dc*state->dc_output;

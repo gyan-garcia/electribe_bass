@@ -1,0 +1,47 @@
+{
+  "research_date": "2026-11-03",
+  "projects": [
+    {
+      "project": "odin2",
+      "url": "https://github.com/TheWaveWarden/odin2",
+      "commit": "265e9e227581357efb87ed7217381f8a40c5e2bf",
+      "license_observation": "GPL-3.0-or-later (DSP headers)"
+    },
+    {
+      "project": "sst-filters",
+      "url": "https://github.com/surge-synthesizer/sst-filters",
+      "commit": "87a171bcba52c014850848a29174a54f0adc6606",
+      "license_observation": "GPL-3.0-or-later; retained per-file notices"
+    },
+    {
+      "project": "amsynth",
+      "url": "https://github.com/amsynth/amsynth",
+      "commit": "29818503d3d63b36948e9696741ae7d5c8c66997",
+      "license_observation": "GPL-2.0-or-later"
+    },
+    {
+      "project": "helm",
+      "url": "https://github.com/mtytel/helm",
+      "commit": "abdedd527e6e1cf86636f0f1e8a3e75b06ed166a",
+      "license_observation": "GPL-3.0-or-later (DSP headers)"
+    },
+    {
+      "project": "Faug",
+      "url": "https://github.com/t2techno/Faug",
+      "commit": "b15d0532d84e1efe73e9acdbaecd1e90ce596186",
+      "license_observation": "Not verified; no license file found"
+    }
+  ],
+  "documentation_only": [
+    "https://bristol.sourceforge.net/mini.html"
+  ],
+  "feedback_sources": [
+    "https://www.kvraudio.com/product/odin-2-by-thewavewarden/reviews",
+    "https://www.kvraudio.com/product/surge-xt-by-surge-synth-team/reviews",
+    "https://www.kvraudio.com/product/helm-by-matt-tytel/reviews"
+  ],
+  "myxa_core_sha256": "55b44467ab43152003cc1dc8626e2c01b7695894267388c945581b62d3629ded",
+  "user_preset_count": 102,
+  "user_preset_manifest_sha256": "35d403666cbce064003a0f88470fe728b9438218337cbdee4d6b8be91892dd08",
+  "scope": "Source inspection and MYXA diagnostics; no third-party DSP copied, no competitor audio comparison, no hardware timing test."
+}

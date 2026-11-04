@@ -16,10 +16,23 @@ calibration are approximations, not measurements of a physical Model D.
 
 The mixer includes white/pink-like noise, input drive and an internal feedback
 path approximating the idea of an output-to-input cable. This does not expose
-an external audio input. The filter offers 24 dB low-pass/high-pass responses,
-emphasis into self-oscillation, signed envelope depth and independent one-third /
+an external audio input. The filter is fixed to 24 dB/octave low-pass, with
+resonance into self-oscillation, signed envelope depth and independent one-third /
 two-thirds keyboard control switches. Both on give full tracking, calibrated
-around G1 (49 Hz). High-pass is inspired by Behringer's additional mode.
+around G1 (49 Hz). There is no filter type or slope selector.
+
+All 26 active patches in `presets/user/` use this filter. The six formerly using
+18 dB were retuned through cutoff, contour depth and clean output gain, with
+their originals and level-matched before/after recordings backed up. The other
+20 patches were unchanged. These are approximate tonal matches, not identical
+waveforms. See `24DB-MIGRATION.md` for the migration record.
+
+The 47-value native parameter contract retains `filter_mode` as a reserved,
+ignored slot to preserve firmware/file IDs. Desktop imports normalize this slot
+to zero and legacy `modeld18` architecture names to `modeld`. The native engine
+also ignores old mode/tap requests, so they cannot reactivate high-pass or 18 dB.
+Legacy imports receive the fixed filter; only the six active library patches
+received the automatic tonal retuning.
 
 Filter and amp each have attack, decay and sustain. The shared Decay on Key
 Release switch enables releases using the corresponding decay knob, otherwise

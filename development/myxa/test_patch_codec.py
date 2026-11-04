@@ -38,7 +38,7 @@ class CodecTests(unittest.TestCase):
         self.assertEqual(self.lib.myxa_file_decode(bytes(data),SIZE,ctypes.byref(Record())),0)
     def test_float32_range_boundaries_roundtrip(self):
         for edge in ('minimum','maximum'):
-            record=decode(self.data());record['values']=[s[edge] for s in SCHEMA['parameters']]
+            record=decode(self.data());record['values']=[0 if s['key']=='filter_mode' else s[edge] for s in SCHEMA['parameters']]
             data=encode(record)
             self.assertEqual(encode(from_desktop(to_desktop(decode(data)),7)),data)
     def test_pan_and_effects_are_preserved(self):

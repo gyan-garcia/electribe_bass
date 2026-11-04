@@ -50,7 +50,7 @@ class ModelDTests(unittest.TestCase):
 
     def test_active_patches_discovered_and_valid(self):
         patches=[read_patch(path) for path in patch_paths()]
-        self.assertTrue({'UK Res Bass','BOSS 03','Moog Res'}.issubset({p['name'] for p in patches}))
+        self.assertTrue({'BOSS 03','Moog Res','TL - Broken Radio','UK50 29 Jungle - Concrete Reese'}.issubset({p['name'] for p in patches}))
         self.assertNotIn('Model D Init',{p['name'] for p in patches})
         for patch in patches: self.assertEqual(validate_patch(patch),patch)
 
@@ -75,10 +75,10 @@ class ModelDTests(unittest.TestCase):
         for left in range(6):
             for right in range(left): self.assertGreater(np.mean(abs(waves[left]-waves[right])),.01)
 
-    def test_filter_modes_noise_and_modulation_change_audio(self):
+    def test_filter_is_fixed_lowpass_and_noise_modulation_change_audio(self):
         low=self.audio({'cutoff_hz':200,'resonance':.2})
         high=self.audio({'cutoff_hz':200,'resonance':.2,'filter_mode':1})
-        self.assertGreater(np.mean(abs(low-high)),.03)
+        np.testing.assert_array_equal(low,high)
         white=self.audio({'osc1_level':0,'noise_level':1})
         pink=self.audio({'osc1_level':0,'noise_level':1,'noise_color':1})
         self.assertGreater(np.std(white),.02)
@@ -141,7 +141,7 @@ class ModelDTests(unittest.TestCase):
             window.synth.drain()
             window.apply_patch(self.patch)
             window.tick()
-            self.assertEqual(len(window.knobs),47)
+            self.assertEqual(len(window.knobs),46)
             self.assertEqual(window.tabs.count(),9)
             self.assertNotIn('pulse_blend',window.patch['parameters'])
             window.knobs['osc1_wave'].spin.setCurrentIndex(4)

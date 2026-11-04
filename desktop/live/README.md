@@ -31,15 +31,12 @@ another output. Device numbers can change; select by displayed name.
 
 ## Play and edit
 
-The preferred focused auditions are now playable as **Model D 18 dB Finalist 2**
-and **Model D 18 dB Finalist 3**, under Model D prototype. Their saved modeld18
-architecture selects the third ladder stage for the low-pass output, keeping
-the four-stage feedback loop exactly as auditioned. The high-pass selection
-retains the original 24 dB response and is labelled accordingly. Architecture
-and clean gain survive Save As / Import. Both use the existing Model D MIDI maps.
-Their raw full-phrase audio is tested sample-for-sample against the frozen
-audition engine in fixtures/ladder18-audition.c. Clean patch gains are +20.46 dB
-and +19.97 dB respectively, balanced against the approved bass phrase.
+The active library contains 26 patches, all in `presets/user/`. Model D uses a
+fixed **24 dB/octave low-pass** filter. Filter type and slope selectors have been
+removed. The six former 18 dB patches have adjusted cutoff, contour depth and
+clean gain to approximate their original sound; the other 20 patches are unchanged.
+Legacy 18 dB imports now load through the 24 dB engine. Historical audition files
+remain research references. See `24DB-MIGRATION.md` for backups and comparisons.
 
 - Select **Approved bass** or **Model D prototype** using the engine selector
   beside Patch. Switching engines releases held notes. Save edits before switching.

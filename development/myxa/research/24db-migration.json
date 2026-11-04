@@ -1,0 +1,109 @@
+{
+  "applied": true,
+  "patches": [
+    {
+      "name": "BOSS 03",
+      "file": "BOSS-03.json",
+      "original_sha256": "cc14a30a52fbe19fe2e120fc82d82f6bd30b9c3fe5256dddc6ec7199401a37fb",
+      "before": {
+        "cutoff_hz": 58.380127148443464,
+        "filter_env_octaves": 4.702323091349351
+      },
+      "after": {
+        "cutoff_hz": 68.73665772819326,
+        "filter_env_octaves": 4.69178107996648
+      },
+      "before_gain_db": 20.46,
+      "after_gain_db": 20.637667866823545,
+      "unadjusted_spectral_error": 0.0008722408674657345,
+      "adjusted_spectral_error": 0.00034511828562244773
+    },
+    {
+      "name": "Moog Res",
+      "file": "Moog-Res.json",
+      "original_sha256": "a8fa4087e95f5041abce4a53da2b3c579515e5cfcf4ccbfb37c2570545c88dfa",
+      "before": {
+        "cutoff_hz": 64.84464932190217,
+        "filter_env_octaves": 4.702323091349351
+      },
+      "after": {
+        "cutoff_hz": 71.1458454959151,
+        "filter_env_octaves": 4.699327105841067
+      },
+      "before_gain_db": 20.46,
+      "after_gain_db": 20.762360965121424,
+      "unadjusted_spectral_error": 0.0025219323579221964,
+      "adjusted_spectral_error": 0.0014437189092859626
+    },
+    {
+      "name": "UK Res Bass",
+      "file": "UK-Res-Bass.json",
+      "original_sha256": "761f3dd2883e06fda9c3d2f3c6c2f554bcf67fbd621a80959a4b69959ac54424",
+      "before": {
+        "cutoff_hz": 76.3086546300084,
+        "filter_env_octaves": 4.702323091349351
+      },
+      "after": {
+        "cutoff_hz": 90.99446004278586,
+        "filter_env_octaves": 4.679052776488385
+      },
+      "before_gain_db": 20.46,
+      "after_gain_db": 20.55809907372224,
+      "unadjusted_spectral_error": 0.0008731664856895804,
+      "adjusted_spectral_error": 0.0003189114504493773
+    },
+    {
+      "name": "UK50 35 Rubber - Amber Envelope",
+      "file": "UK50-35-Rubber-Amber-Envelope.json",
+      "original_sha256": "1e65327ba6a256001f45e7777831c65cdf2575e2bbdc262aef078618c9a74d39",
+      "before": {
+        "cutoff_hz": 115.0,
+        "filter_env_octaves": 4.6
+      },
+      "after": {
+        "cutoff_hz": 124.42749784793742,
+        "filter_env_octaves": 4.598942715457993
+      },
+      "before_gain_db": 6.58,
+      "after_gain_db": 7.129910894417997,
+      "unadjusted_spectral_error": 0.003237136173993349,
+      "adjusted_spectral_error": 0.0017152037471532822
+    },
+    {
+      "name": "UK50 40 Rubber - Liquorice",
+      "file": "UK50-40-Rubber-Liquorice.json",
+      "original_sha256": "e5f8346cdb1d12290df46a46bc0182086e618c634046569dbf9947302f1e28d8",
+      "before": {
+        "cutoff_hz": 90.3,
+        "filter_env_octaves": 4.4
+      },
+      "after": {
+        "cutoff_hz": 96.54687952842603,
+        "filter_env_octaves": 4.396569744837015
+      },
+      "before_gain_db": 8.87,
+      "after_gain_db": 9.663274238869576,
+      "unadjusted_spectral_error": 0.0028269768226891756,
+      "adjusted_spectral_error": 0.0017272564582526684
+    },
+    {
+      "name": "UK50 41 Rubber - Bubblegum",
+      "file": "UK50-41-Rubber-Bubblegum.json",
+      "original_sha256": "528c786bd93da0c14dd472d370685509af93a45eec5adb010181aa2bc572c887",
+      "before": {
+        "cutoff_hz": 85.0,
+        "filter_env_octaves": 5.2
+      },
+      "after": {
+        "cutoff_hz": 89.79714371545157,
+        "filter_env_octaves": 5.169036744333933
+      },
+      "before_gain_db": 7.36,
+      "after_gain_db": 8.34100516353931,
+      "unadjusted_spectral_error": 0.003079300979152322,
+      "adjusted_spectral_error": 0.0015635796589776874
+    }
+  ],
+  "unchanged_patches": 20,
+  "note": "Full demonstration sequence; normalized time-varying spectral-band fit. Only cutoff, contour depth and clean gain adjusted. Numerical fit does not guarantee perceptual equivalence."
+}

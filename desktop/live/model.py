@@ -1,4 +1,4 @@
-from dataclasses import dataclass, replace
+from dataclasses import dataclass
 import json
 import math
 from pathlib import Path
@@ -92,7 +92,7 @@ MODEL_D_PARAMETERS.extend([
     Parameter('cutoff_hz','Cutoff','Filter',20,18000,True,suffix=' Hz'),
     Parameter('resonance','Resonance','Filter',0,1.1),
     Parameter('filter_env_octaves','Contour Amount','Filter',-6,8,suffix=' oct'),
-    Parameter('filter_mode','Filter Mode','Filter',0,1,choices=('24 dB Low-pass','24 dB High-pass')),
+    Parameter('filter_mode','Filter Type','Filter',0,1,choices=('Low-pass','High-pass')),
     Parameter('keytrack_1','Keyboard Control ⅓','Filter',0,1,choices=SWITCH),
     Parameter('keytrack_2','Keyboard Control ⅔','Filter',0,1,choices=SWITCH),
     Parameter('filter_attack_s','Filter Attack','Contours',0,3,False,1000,' ms'),
@@ -122,13 +122,12 @@ def engine_key(architecture):
 
 
 def parameters_for(architecture):
-    if architecture=='modeld18':
-        return [replace(p,choices=('18 dB Low-pass','24 dB High-pass')) if p.name=='filter_mode' else p for p in MODEL_D_PARAMETERS]
     return MODEL_D_PARAMETERS if engine_key(architecture)=='modeld' else PARAMETERS
 
 
 def specs_for(architecture):
-    return {parameter.name:parameter for parameter in parameters_for(architecture)}
+    return {parameter.name:parameter for parameter in parameters_for(architecture)
+            if not (engine_key(architecture)=='modeld' and parameter.name=='filter_mode')}
 
 
 def validate_patch(data):
@@ -148,9 +147,15 @@ def validate_patch(data):
         if parameter.choices and value!=round(value):
             raise ValueError(f'{parameter.label} requires a discrete selection')
         checked[parameter.name]=float(value)
+    # Keep the reserved native slot and old engine ID readable, but canonicalize
+    # imported patches to the single supported Model D filter.
+    architecture=data['architecture']
+    if engine_key(architecture)=='modeld':
+        architecture='modeld'
+        checked['filter_mode']=0.0
     result={'format':'electribe-desktop-patch-v2' if engine_key(data['architecture'])=='modeld' else 'electribe-desktop-patch-v1',
             'name':str(data.get('name','Untitled'))[:80],
-            'architecture':data['architecture'],'parameters':checked}
+            'architecture':architecture,'parameters':checked}
     if engine_key(data['architecture'])=='modeld':
         gain=data.get('output_gain_db',0)
         if isinstance(gain,bool) or not isinstance(gain,(int,float)) or not math.isfinite(gain) or not -24<=gain<=24:

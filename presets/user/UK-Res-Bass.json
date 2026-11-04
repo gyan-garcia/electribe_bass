@@ -1,7 +1,7 @@
 {
   "format": "electribe-desktop-patch-v2",
   "name": "UK Res Bass",
-  "architecture": "modeld18",
+  "architecture": "modeld",
   "parameters": {
     "osc1_wave": 2.0,
     "osc1_octave": 0.0,
@@ -25,10 +25,10 @@
     "mixer_drive": 0.368,
     "feedback_level": 0.012998361999096283,
     "output_drive": 1.0,
-    "cutoff_hz": 76.3086546300084,
+    "cutoff_hz": 90.99446004278586,
     "resonance": 0.2251968503937008,
-    "filter_env_octaves": 4.702323091349351,
-    "filter_mode": 0.0,
+    "filter_env_octaves": 4.679052776488385,
+    "filter_mode": 0,
     "keytrack_1": 1.0,
     "keytrack_2": 1.0,
     "filter_attack_s": 0.014936275242587773,
@@ -51,7 +51,7 @@
     "filter_mod_enabled": 0.0,
     "filter_mod_depth": 2.0
   },
-  "output_gain_db": 20.46,
+  "output_gain_db": 20.55809907372224,
   "eq": {
     "enabled": true,
     "low_hz": 100.0,
